@@ -53,7 +53,6 @@ export default function Register() {
     setIsLoading(true);
 
     try {
-      // Call the register API
       await authService.register({
         fullName: formData.fullName,
         email: formData.email,
@@ -143,7 +142,7 @@ export default function Register() {
                         id="fullName"
                         name="fullName"
                         placeholder="John Doe"
-                        className="pl-10"
+                        className="pl-10 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                         value={formData.fullName}
                         onChange={handleChange}
                         required
@@ -162,7 +161,7 @@ export default function Register() {
                         name="email"
                         type="email"
                         placeholder="name@example.com"
-                        className="pl-10"
+                        className="pl-10 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -183,14 +182,14 @@ export default function Register() {
                         name="password"
                         type="password"
                         placeholder="••••••••"
-                        className="pl-10"
+                        className="pl-10 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                         value={formData.password}
                         onChange={handleChange}
                         required
                         minLength={8}
                       />
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-xs text-gray-700 dark:text-gray-300 mt-1">
                       Password must be at least 8 characters
                     </p>
                   </div>
@@ -206,7 +205,7 @@ export default function Register() {
                         name="confirmPassword"
                         type="password"
                         placeholder="••••••••"
-                        className="pl-10"
+                        className="pl-10 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required

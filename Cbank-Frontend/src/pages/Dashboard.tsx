@@ -1,16 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  FiCreditCard,
-  FiDollarSign,
-  FiArrowUp,
-  FiArrowDown,
-} from "react-icons/fi";
-import { DashboardSidebar } from "../pages/dashboard/DashboardSidebar";
-import DashboardHeader from "../pages/dashboard/DashboardHeader";
-import { AccountCard } from "../components/dashboard/AccountCard";
-
+import { FiDollarSign, FiArrowUp, FiArrowDown } from "react-icons/fi";
+import { DashboardSidebar } from "./dashboard/DashboardSidebar";
+import DashboardHeader from "./dashboard/DashboardHeader";
 import { StatCard } from "../components/dashboard/StatCard";
 import { authService } from "../services/api";
 
@@ -20,6 +13,9 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+
     // Check if user is logged in
     const token = localStorage.getItem("token");
     if (!token) {
@@ -77,72 +73,48 @@ export default function Dashboard() {
             </div>
 
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <StatCard
-                title="Total Balance"
-                value="$24,562.00"
-                change="+2.3%"
-                isPositive={true}
-                icon={<FiDollarSign />}
-              />
-              <StatCard
-                title="Monthly Spending"
-                value="$3,542.00"
-                change="-0.5%"
-                isPositive={false}
-                icon={<FiArrowDown />}
-              />
-              <StatCard
-                title="Monthly Income"
-                value="$6,284.00"
-                change="+4.1%"
-                isPositive={true}
-                icon={<FiArrowUp />}
-              />
-            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.2 }}
+              >
+                <StatCard
+                  title="Total Balance"
+                  value="Rp 368.430.000"
+                  change="+2,3%"
+                  isPositive={true}
+                  icon={<FiDollarSign />}
+                  className="hover:shadow-lg transition-shadow duration-300 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                />
+              </motion.div>
 
-            {/* Accounts and Transactions */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Accounts Section */}
-              <div className="lg:col-span-2 space-y-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-bold text-gray-800 dark:text-white">
-                    Your Accounts
-                  </h2>
-                  <button className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">
-                    View All
-                  </button>
-                </div>
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.2 }}
+              >
+                <StatCard
+                  title="Monthly Spending"
+                  value="Rp 53.130.000"
+                  change="-0,5%"
+                  isPositive={false}
+                  icon={<FiArrowDown />}
+                  className="hover:shadow-lg transition-shadow duration-300 hover:bg-red-50 dark:hover:bg-red-900/20"
+                />
+              </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <AccountCard
-                    type="Checking Account"
-                    number="**** 4832"
-                    balance="$12,345.67"
-                    color="from-blue-500 to-cyan-500"
-                  />
-                  <AccountCard
-                    type="Savings Account"
-                    number="**** 7291"
-                    balance="$8,942.51"
-                    color="from-purple-500 to-pink-500"
-                  />
-                  <AccountCard
-                    type="Investment Account"
-                    number="**** 1053"
-                    balance="$3,274.00"
-                    color="from-amber-500 to-orange-500"
-                  />
-                  <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 flex items-center justify-center">
-                    <button className="text-blue-600 dark:text-blue-400 flex items-center gap-2 font-medium">
-                      <span className="h-8 w-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                        <FiCreditCard className="text-blue-600 dark:text-blue-400" />
-                      </span>
-                      Add New Account
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.2 }}
+              >
+                <StatCard
+                  title="Monthly Income"
+                  value="Rp 94.260.000"
+                  change="+4,1%"
+                  isPositive={true}
+                  icon={<FiArrowUp />}
+                  className="hover:shadow-lg transition-shadow duration-300 hover:bg-green-50 dark:hover:bg-green-900/20"
+                />
+              </motion.div>
             </div>
           </motion.div>
         </main>

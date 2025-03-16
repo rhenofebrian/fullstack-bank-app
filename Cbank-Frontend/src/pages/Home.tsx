@@ -4,6 +4,7 @@ import About from "../components/About";
 import Team from "../components/Team";
 import FAQ from "../components/FAQ";
 import ChatBubble from "../components/ChatBubble";
+import PremiumAdCard from "../components/PremiumAdCard";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Team />
       <FAQ />
       <ChatBubble />
+      <PremiumAdCard />
     </div>
   );
 };

@@ -78,7 +78,7 @@ export default function Login() {
                     id="email"
                     type="email"
                     placeholder="name@example.com"
-                    className="pl-10"
+                    className="pl-10 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -104,7 +104,7 @@ export default function Login() {
                     id="password"
                     type="password"
                     placeholder="••••••••"
-                    className="pl-10"
+                    className="pl-10 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required

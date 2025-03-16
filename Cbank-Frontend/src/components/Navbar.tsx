@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FiMoon, FiSun, FiMenu, FiX, FiLogIn } from "react-icons/fi";
@@ -73,21 +71,23 @@ export default function Navbar() {
         ))}
       </ul>
 
-      {/* Login Button with Magnetic Effect */}
-      <Magnetic strength={30}>
-        <Link
-          to="/login"
-          className="hidden md:flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 
-    text-white px-4 py-2 rounded-full font-medium text-sm transition-all duration-300 
-    hover:shadow-lg hover:shadow-blue-500/30"
-        >
-          <FiLogIn className="text-white" />
-          Login
-        </Link>
-      </Magnetic>
+      {/* Right Section with Login Button and Dark Mode */}
+      <div className="flex items-center space-x-4">
+        {/* Login Button with Magnetic Effect - Moved to the right */}
+        <div className="hidden md:block">
+          <Magnetic strength={30}>
+            <Link
+              to="/login"
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 
+                text-white px-4 py-2 rounded-full font-medium text-sm transition-all duration-300 
+                hover:shadow-lg hover:shadow-blue-500/30"
+            >
+              <FiLogIn className="text-white" />
+              Login
+            </Link>
+          </Magnetic>
+        </div>
 
-      {/* Right Section: Dark Mode + Hamburger */}
-      <div className="flex items-center space-x-3">
         {/* Dark Mode Button */}
         <button
           onClick={() => setDarkMode(!darkMode)}
