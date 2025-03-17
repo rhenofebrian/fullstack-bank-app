@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiMail, FiDollarSign, FiSend, FiLoader } from "react-icons/fi";
@@ -9,18 +9,46 @@ import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { Button } from "../../components/ui/button";
 import { useToast } from "../../components/toast";
+import { transferService } from "../../services/transferApi";
+import { authService } from "../../services/api";
 
 export default function Transfer() {
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState<any>(null);
   const [formData, setFormData] = useState({
     email: "",
     amount: "",
+    description: "",
   });
 
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    // Fetch user data
+    const fetchUserData = async () => {
+      try {
+        const response = await authService.getCurrentUser();
+        setUser(response.user);
+      } catch (error) {
+        console.error("Authentication error:", error);
+        navigate("/login");
+      }
+    };
+
+    fetchUserData();
+  }, [navigate]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
     // Only allow numbers for the amount field
@@ -46,9 +74,41 @@ export default function Transfer() {
     e.preventDefault();
     setIsLoading(true);
 
+    // Validate amount
+    const amount = Number.parseInt(formData.amount);
+    if (isNaN(amount) || amount <= 0) {
+      toast({
+        title: "Invalid Amount",
+        description: "Please enter a valid amount greater than 0",
+        type: "error",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    // Check if user has enough balance
+    if (user && amount > user.balance) {
+      toast({
+        title: "Insufficient Balance",
+        description: "You don't have enough balance to make this transfer",
+        type: "error",
+      });
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log("Sending transfer request:", {
+        recipientEmail: formData.email,
+        amount,
+        description: formData.description || "Transfer from dashboard",
+      });
+
+      const response = await transferService.transferFunds({
+        recipientEmail: formData.email,
+        amount,
+        description: formData.description || "Transfer from dashboard",
+      });
 
       toast({
         title: "Transfer Successful",
@@ -58,16 +118,23 @@ export default function Transfer() {
         type: "success",
       });
 
+      // Update user balance
+      const updatedUser = await authService.getCurrentUser();
+      setUser(updatedUser.user);
+
       // Reset form
       setFormData({
         email: "",
         amount: "",
+        description: "",
       });
     } catch (error: any) {
+      console.error("Transfer error:", error);
       toast({
         title: "Transfer Failed",
         description:
-          error.message || "An error occurred while processing the transfer.",
+          error.response?.data?.message ||
+          "An error occurred while processing the transfer.",
         type: "error",
       });
     } finally {
@@ -80,7 +147,7 @@ export default function Transfer() {
       <DashboardSidebar />
 
       <div className="flex-1 flex flex-col">
-        <DashboardHeader />
+        <DashboardHeader user={user} />
 
         <main className="flex-1 p-6 overflow-auto">
           <motion.div
@@ -94,7 +161,7 @@ export default function Transfer() {
                 Fund Transfer
               </h1>
               <p className="text-gray-600 dark:text-gray-400">
-                Send money to an account or email recipient
+                Send money to another CBank user
               </p>
             </div>
 
@@ -142,6 +209,25 @@ export default function Transfer() {
                           {formatRupiah(formData.amount)}
                         </p>
                       )}
+                      {user && (
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          Your balance: {formatRupiah(user.balance.toString())}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="description">
+                        Description (Optional)
+                      </Label>
+                      <Input
+                        id="description"
+                        name="description"
+                        placeholder="What's this transfer for?"
+                        className="dark:text-gray-300"
+                        value={formData.description}
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
 

@@ -1,154 +1,127 @@
 import { useState } from "react";
-import {
-  FiMenu,
-  FiX,
-  FiUser,
-  FiBell,
-  FiDollarSign,
-  FiUsers,
-  FiLogOut,
-} from "react-icons/fi";
-import { Button } from "../../components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../../components/ui/dropdown-menu";
-import { useNavigate } from "react-router-dom";
+import { FiMenu, FiUser, FiLogOut, FiMoon, FiSun } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import useDarkMode from "../../hooks/useDarkMode";
 
 interface AdminHeaderProps {
-  admin?: any;
+  onLogout: () => void;
 }
 
-export default function AdminHeader({ admin }: AdminHeaderProps) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    navigate("/admin/login");
-  };
+const AdminHeader: React.FC<AdminHeaderProps> = ({ onLogout }) => {
+  const [darkMode, setDarkMode] = useDarkMode();
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   return (
-    <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-30">
-      <div className="flex h-16 items-center justify-between px-4 md:px-6">
-        {/* Mobile Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <FiX className="h-5 w-5" />
-          ) : (
-            <FiMenu className="h-5 w-5" />
-          )}
-          <span className="sr-only">Toggle Menu</span>
-        </Button>
+    <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <button
+              type="button"
+              className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+            >
+              <span className="sr-only">Open main menu</span>
+              <FiMenu className="h-6 w-6" />
+            </button>
+            <div className="md:hidden flex-shrink-0 flex items-center ml-4">
+              <Link to="/admin/dashboard" className="flex items-center">
+                <h1 className="text-xl font-bold">
+                  <span className="text-blue-600">C</span>
+                  <span className="text-gray-900 dark:text-white">Bank</span>
+                  <span className="text-red-500 ml-1">Admin</span>
+                </h1>
+              </Link>
+            </div>
+          </div>
 
-        {/* Search (placeholder) */}
-        <div className="flex-1 md:ml-4">
-          <div className="relative hidden md:block max-w-md">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full bg-gray-100 dark:bg-gray-700 border-none rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-            />
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-              <svg
-                className="h-4 w-4 text-gray-400 dark:text-gray-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+          <div className="flex items-center">
+            {/* Dark Mode Toggle Button */}
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 transition 
+                          hover:bg-blue-500 dark:hover:bg-blue-600"
+            >
+              {darkMode ? (
+                <FiSun className="text-yellow-400 transition duration-300" />
+              ) : (
+                <FiMoon />
+              )}
+            </button>
+
+            <div className="ml-3 relative">
+              <div>
+                <button
+                  type="button"
+                  className="flex items-center max-w-xs rounded-full bg-white dark:bg-gray-800 text-sm focus:outline-none"
+                  onClick={() => setShowProfileMenu(!showProfileMenu)}
+                >
+                  <span className="sr-only">Open user menu</span>
+                  <div className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                    <FiUser className="h-5 w-5" />
+                  </div>
+                </button>
+              </div>
+
+              {showProfileMenu && (
+                <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
+                  <button
+                    className="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    onClick={() => {
+                      setShowProfileMenu(false);
+                      onLogout();
+                    }}
+                  >
+                    <div className="flex items-center">
+                      <FiLogOut className="mr-2 h-4 w-4" />
+                      Sign out
+                    </div>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
-
-        {/* Right Side Actions */}
-        <div className="flex items-center space-x-2">
-          {/* Notifications */}
-          <Button variant="ghost" size="icon" className="relative">
-            <FiBell className="h-5 w-5" />
-            <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
-            <span className="sr-only">Notifications</span>
-          </Button>
-
-          {/* User Menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <FiUser className="h-5 w-5" />
-                <span className="sr-only">User menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">
-                    {admin?.fullName || "Administrator"}
-                  </p>
-                  <p className="text-xs leading-none text-gray-500 dark:text-gray-400">
-                    {admin?.email || "admin@example.com"}
-                  </p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => navigate("/admin/settings")}>
-                Settings
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={handleLogout}
-                className="text-red-600 dark:text-red-400"
-              >
-                Logout
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
-          <nav className="flex flex-col space-y-2">
-            <a
-              href="/admin/transfer"
-              className="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+      {/* Mobile menu */}
+      {showMobileMenu && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link
+              to="/admin/dashboard"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-700"
+              onClick={() => setShowMobileMenu(false)}
             >
-              <FiDollarSign className="h-5 w-5 mr-3" />
-              Transfer to User
-            </a>
-            <a
-              href="/admin/users"
-              className="flex items-center px-4 py-2 text-sm font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              Dashboard
+            </Link>
+            <Link
+              to="/admin/users"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              onClick={() => setShowMobileMenu(false)}
             >
-              <FiUsers className="h-5 w-5 mr-3" />
-              User Management
-            </a>
-            <button
-              onClick={handleLogout}
-              className="flex items-center px-4 py-2 text-sm font-medium text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 w-full text-left"
+              Users
+            </Link>
+            <Link
+              to="/admin/transactions"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              onClick={() => setShowMobileMenu(false)}
             >
-              <FiLogOut className="h-5 w-5 mr-3" />
-              Logout
-            </button>
-          </nav>
+              Transactions
+            </Link>
+            <Link
+              to="/admin/settings"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              onClick={() => setShowMobileMenu(false)}
+            >
+              Settings
+            </Link>
+          </div>
         </div>
       )}
     </header>
   );
-}
+};
+
+export default AdminHeader;

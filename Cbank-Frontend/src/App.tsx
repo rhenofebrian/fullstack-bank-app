@@ -10,18 +10,20 @@ import ScrollToTop from "./components/effect/ScrollToTop";
 function App() {
   const location = useLocation();
   const isDashboard = location.pathname.startsWith("/dashboard");
+  const isAdmin = location.pathname.startsWith("/admin");
+  const hideNavbarFooter = isDashboard || isAdmin;
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-950">
-      {!isDashboard && <Navbar />}
+      {!hideNavbarFooter && <Navbar />}
       <ScrollToTop />
       <main className="flex-grow">
         <AppRouter />
       </main>
-      {!isDashboard && <Footer />}
+      {!hideNavbarFooter && <Footer />}
       <ToastContainer />
 
-      {!isDashboard && <ChatBubble />}
+      {!hideNavbarFooter && <ChatBubble />}
     </div>
   );
 }

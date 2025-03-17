@@ -175,10 +175,16 @@ export default function Settings() {
               <Tabs defaultValue="security" className="w-full">
                 <div className="border-b border-gray-200 dark:border-gray-700">
                   <TabsList className="flex">
-                    <TabsTrigger value="security" className="flex-1 py-4">
+                    <TabsTrigger
+                      value="security"
+                      className="flex-1 py-4 dark:text-gray-300"
+                    >
                       Security
                     </TabsTrigger>
-                    <TabsTrigger value="account" className="flex-1 py-4">
+                    <TabsTrigger
+                      value="account"
+                      className="flex-1 py-4 dark:text-gray-300"
+                    >
                       Account
                     </TabsTrigger>
                   </TabsList>
@@ -209,7 +215,7 @@ export default function Settings() {
                               name="currentPassword"
                               type="password"
                               placeholder="••••••••"
-                              className="pl-10"
+                              className="pl-10 dark:text-gray-300"
                               value={passwordData.currentPassword}
                               onChange={handlePasswordChange}
                               required
@@ -228,7 +234,7 @@ export default function Settings() {
                               name="newPassword"
                               type="password"
                               placeholder="••••••••"
-                              className="pl-10"
+                              className="pl-10 dark:text-gray-300"
                               value={passwordData.newPassword}
                               onChange={handlePasswordChange}
                               required
@@ -253,7 +259,7 @@ export default function Settings() {
                               name="confirmPassword"
                               type="password"
                               placeholder="••••••••"
-                              className="pl-10"
+                              className="pl-10 dark:text-gray-300"
                               value={passwordData.confirmPassword}
                               onChange={handlePasswordChange}
                               required

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const userSchema = new mongoose.Schema(
+const adminSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
@@ -21,37 +21,30 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is required"],
       minlength: [8, "Password must be at least 8 characters"],
     },
-    balance: {
-      type: Number,
-      default: 0,
+    role: {
+      type: String,
+      enum: ["admin", "super_admin"],
+      default: "admin",
     },
-    settings: {
-      type: Object,
-      default: {},
+    lastLogin: {
+      type: Date,
+      default: null,
     },
   },
   { timestamps: true }
 );
 
-// Hash password sebelum disimpan
-userSchema.pre("save", async function (next) {
+// Hash password before saving
+adminSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-
-  console.log("Password sebelum hashing:", this.password); // Debugging
   this.password = await bcrypt.hash(this.password, 10);
-  console.log("Password setelah hashing:", this.password); // Debugging
-
   next();
 });
 
-// Bandingkan password dengan hash yang tersimpan
-userSchema.methods.comparePassword = async function (password) {
-  console.log("Password input:", password); // Debugging
-  console.log("Password hash di DB:", this.password); // Debugging
-
+// Compare password with hash
+adminSchema.methods.comparePassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// Ekspor model
-const User = mongoose.model("User", userSchema);
-export default User;
+const Admin = mongoose.model("Admin", adminSchema);
+export default Admin;

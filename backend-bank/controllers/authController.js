@@ -1,31 +1,44 @@
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
 import User from "../models/User.js";
+import jwt from "jsonwebtoken";
 import { createError } from "../utils/error.js";
 
-// **Register User**
+// Register a new user
 export const register = async (req, res, next) => {
   try {
     const { fullName, email, password } = req.body;
 
-    // Cek apakah user sudah ada
+    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return next(createError(400, "User dengan email ini sudah ada"));
+      return next(createError(400, "User with this email already exists"));
     }
 
-    // Buat user baru (password otomatis di-hash dalam model)
-    const newUser = new User({ fullName, email, password });
+    // Create new user
+    const newUser = new User({
+      fullName,
+      email,
+      password,
+      balance: 1000000,
+    });
 
     await newUser.save();
 
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: newUser._id, email: newUser.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
     res.status(201).json({
       success: true,
-      message: "User berhasil didaftarkan",
+      message: "User registered successfully",
+      token,
       user: {
         id: newUser._id,
         fullName: newUser.fullName,
         email: newUser.email,
+        balance: newUser.balance,
       },
     });
   } catch (error) {
@@ -33,25 +46,19 @@ export const register = async (req, res, next) => {
   }
 };
 
-// **Login User**
+// Login user
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    console.log("🟢 Mencari user dengan email:", email); // Debugging
+    // Find user by email
     const user = await User.findOne({ email });
-
     if (!user) {
-      console.log("🔴 User tidak ditemukan");
       return next(createError(401, "Invalid email or password"));
     }
 
-    console.log("🟡 Password input:", password);
-    console.log("🟡 Password hash di DB:", user.password);
-
+    // Verify password
     const isPasswordValid = await user.comparePassword(password);
-    console.log("🟢 Password valid:", isPasswordValid);
-
     if (!isPasswordValid) {
       return next(createError(401, "Invalid email or password"));
     }
@@ -60,10 +67,8 @@ export const login = async (req, res, next) => {
     const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "7d" }
     );
-
-    console.log("🟢 Token JWT dibuat:", token);
 
     res.status(200).json({
       success: true,
@@ -73,49 +78,24 @@ export const login = async (req, res, next) => {
         id: user._id,
         fullName: user.fullName,
         email: user.email,
+        balance: user.balance,
       },
     });
   } catch (error) {
-    console.log("❌ Error saat login:", error);
     next(error);
   }
 };
 
-// **Get Current User**
+// Get current user
 export const getCurrentUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
-
     if (!user) {
       return next(createError(404, "User not found"));
     }
-
-    res.status(200).json({ success: true, user });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// **Update Profile**
-export const updateProfile = async (req, res, next) => {
-  try {
-    const { fullName, phone, address, bio } = req.body;
-
-    const user = await User.findById(req.user.id);
-    if (!user) {
-      return next(createError(404, "User not found"));
-    }
-
-    if (fullName) user.fullName = fullName;
-    if (phone) user.phone = phone;
-    if (address) user.address = address;
-    if (bio) user.bio = bio;
-
-    await user.save();
 
     res.status(200).json({
       success: true,
-      message: "Profile updated successfully",
       user,
     });
   } catch (error) {
@@ -123,51 +103,28 @@ export const updateProfile = async (req, res, next) => {
   }
 };
 
-// **Change Password**
-export const changePassword = async (req, res, next) => {
+// Update user profile
+export const updateProfile = async (req, res, next) => {
   try {
-    const { currentPassword, newPassword } = req.body;
+    const { fullName } = req.body;
 
-    const user = await User.findById(req.user.id);
-    if (!user) {
+    // Find and update user
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        fullName,
+      },
+      { new: true }
+    ).select("-password");
+
+    if (!updatedUser) {
       return next(createError(404, "User not found"));
     }
-
-    const isPasswordValid = await user.comparePassword(currentPassword);
-    if (!isPasswordValid) {
-      return next(createError(401, "Current password is incorrect"));
-    }
-
-    // Hash password baru sebelum disimpan
-    user.password = await bcrypt.hash(newPassword, 10);
-
-    await user.save();
-
-    res
-      .status(200)
-      .json({ success: true, message: "Password changed successfully" });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// **Update Settings**
-export const updateSettings = async (req, res, next) => {
-  try {
-    const settings = req.body;
-
-    const user = await User.findById(req.user.id);
-    if (!user) {
-      return next(createError(404, "User not found"));
-    }
-
-    user.settings = settings;
-    await user.save();
 
     res.status(200).json({
       success: true,
-      message: "Settings updated successfully",
-      settings: user.settings,
+      message: "Profile updated successfully",
+      user: updatedUser,
     });
   } catch (error) {
     next(error);

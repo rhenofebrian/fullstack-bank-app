@@ -1,7 +1,12 @@
+import type React from "react";
 import { FiMoon, FiSun } from "react-icons/fi";
 import useDarkMode from "../../hooks/useDarkMode";
 
-const DashboardHeader: React.FC = () => {
+interface DashboardHeaderProps {
+  user?: any;
+}
+
+const DashboardHeader: React.FC<DashboardHeaderProps> = ({ user }) => {
   const [darkMode, setDarkMode] = useDarkMode();
 
   return (
@@ -13,6 +18,18 @@ const DashboardHeader: React.FC = () => {
           </h1>
 
           <div className="flex items-center space-x-4">
+            {/* User info */}
+            {user && (
+              <div className="hidden md:flex items-center mr-4">
+                <span className="text-sm text-gray-700 dark:text-gray-300 mr-2">
+                  {user.fullName}
+                </span>
+                <div className="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                  {user.fullName.charAt(0).toUpperCase()}
+                </div>
+              </div>
+            )}
+
             {/* Dark Mode Button */}
             <button
               onClick={() => setDarkMode(!darkMode)}
