@@ -2,21 +2,12 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  FiLock,
-  FiSave,
-  FiLoader,
-  FiMoon,
-  FiSun,
-  FiBell,
-  FiGlobe,
-} from "react-icons/fi";
+import { FiLock, FiSave, FiLoader } from "react-icons/fi";
 import { DashboardSidebar } from "./DashboardSidebar";
 import DashboardHeader from "./DashboardHeader";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { Button } from "../../components/ui/button";
-import { Switch } from "../../components/ui/switch";
 import {
   Tabs,
   TabsContent,
@@ -28,20 +19,15 @@ import { userService } from "../../services/api";
 import useDarkMode from "../../hooks/useDarkMode";
 
 export default function Settings() {
-  const [darkMode, setDarkMode] = useDarkMode();
+  const [darkMode] = useDarkMode();
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
-  });
-  const [settings, setSettings] = useState({
-    emailNotifications: true,
-    smsNotifications: false,
-    twoFactorAuth: false,
-    language: "english",
   });
 
   const { toast } = useToast();
@@ -60,11 +46,6 @@ export default function Settings() {
       try {
         const response = await userService.getProfile();
         setUser(response.user);
-
-        // Initialize settings with user preferences if available
-        if (response.user.settings) {
-          setSettings(response.user.settings);
-        }
       } catch (error) {
         console.error("Authentication error:", error);
         toast({
@@ -79,24 +60,11 @@ export default function Settings() {
     };
 
     fetchUserData();
-
-    // Sync settings with dark mode state
-    setSettings((prev) => ({ ...prev, darkMode }));
-  }, [navigate, toast, darkMode]);
+  }, [navigate, toast]);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setPasswordData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSettingChange = (name: string, value: any) => {
-    setSettings((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // For the darkMode setting specifically
-  const handleDarkModeChange = (checked: boolean) => {
-    setDarkMode(checked);
-    setSettings((prev) => ({ ...prev, darkMode: checked }));
   };
 
   const handlePasswordSubmit = async (e: React.FormEvent) => {
@@ -143,27 +111,32 @@ export default function Settings() {
     }
   };
 
-  const handleSettingsSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSaving(true);
-
-    try {
-      await userService.updateSettings(settings);
-
-      toast({
-        title: "Settings Updated",
-        description: "Your settings have been successfully saved",
-        type: "success",
-      });
-    } catch (error: any) {
-      toast({
-        title: "Update Failed",
-        description:
-          error.response?.data?.message || "Failed to update settings",
-        type: "error",
-      });
-    } finally {
-      setIsSaving(false);
+  const handleDeleteAccount = async () => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete your account? This action cannot be undone."
+      )
+    ) {
+      setIsDeleting(true);
+      try {
+        await userService.deleteAccount();
+        toast({
+          title: "Account Deleted",
+          description: "Your account has been permanently deleted",
+          type: "success",
+        });
+        localStorage.removeItem("token");
+        navigate("/");
+      } catch (error: any) {
+        toast({
+          title: "Error",
+          description:
+            error.response?.data?.message || "Failed to delete account",
+          type: "error",
+        });
+      } finally {
+        setIsDeleting(false);
+      }
     }
   };
 
@@ -180,7 +153,7 @@ export default function Settings() {
       <DashboardSidebar />
 
       <div className="flex-1 flex flex-col">
-        <DashboardHeader user={user} />
+        <DashboardHeader />
 
         <main className="flex-1 p-6 overflow-auto">
           <motion.div
@@ -194,71 +167,30 @@ export default function Settings() {
                 Settings
               </h1>
               <p className="text-gray-600 dark:text-gray-400">
-                Manage your account settings and preferences
+                Manage your account settings
               </p>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-              <Tabs defaultValue="account" className="w-full">
+              <Tabs defaultValue="security" className="w-full">
                 <div className="border-b border-gray-200 dark:border-gray-700">
                   <TabsList className="flex">
-                    <TabsTrigger value="account" className="flex-1 py-4">
-                      Account
-                    </TabsTrigger>
-                    <TabsTrigger value="security" className="flex-1 py-4">
+                    <TabsTrigger
+                      value="security"
+                      className="flex-1 py-4 dark:text-gray-300"
+                    >
                       Security
                     </TabsTrigger>
-                    <TabsTrigger value="preferences" className="flex-1 py-4">
-                      Preferences
+                    <TabsTrigger
+                      value="account"
+                      className="flex-1 py-4 dark:text-gray-300"
+                    >
+                      Account
                     </TabsTrigger>
                   </TabsList>
                 </div>
 
                 <div className="p-6">
-                  {/* Account Settings */}
-                  <TabsContent value="account" className="space-y-6">
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                        Account Information
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        View and update your account details
-                      </p>
-
-                      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                        <p className="text-blue-800 dark:text-blue-300 text-sm">
-                          To update your personal information like name and
-                          contact details, please visit the{" "}
-                          <Button
-                            variant="link"
-                            className="p-0 h-auto text-blue-600 dark:text-blue-400"
-                            onClick={() => navigate("/profile")}
-                          >
-                            Profile
-                          </Button>{" "}
-                          page.
-                        </p>
-                      </div>
-
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium text-gray-900 dark:text-white">
-                              Delete Account
-                            </h4>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                              Permanently delete your account and all associated
-                              data
-                            </p>
-                          </div>
-                          <Button variant="destructive" size="sm">
-                            Delete Account
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </TabsContent>
-
                   {/* Security Settings */}
                   <TabsContent value="security" className="space-y-6">
                     <div className="space-y-4">
@@ -283,7 +215,7 @@ export default function Settings() {
                               name="currentPassword"
                               type="password"
                               placeholder="••••••••"
-                              className="pl-10"
+                              className="pl-10 dark:text-gray-300"
                               value={passwordData.currentPassword}
                               onChange={handlePasswordChange}
                               required
@@ -302,7 +234,7 @@ export default function Settings() {
                               name="newPassword"
                               type="password"
                               placeholder="••••••••"
-                              className="pl-10"
+                              className="pl-10 dark:text-gray-300"
                               value={passwordData.newPassword}
                               onChange={handlePasswordChange}
                               required
@@ -327,7 +259,7 @@ export default function Settings() {
                               name="confirmPassword"
                               type="password"
                               placeholder="••••••••"
-                              className="pl-10"
+                              className="pl-10 dark:text-gray-300"
                               value={passwordData.confirmPassword}
                               onChange={handlePasswordChange}
                               required
@@ -353,172 +285,43 @@ export default function Settings() {
                           )}
                         </Button>
                       </form>
-
-                      <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-                          Two-Factor Authentication
-                        </h3>
-
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="font-medium text-gray-900 dark:text-white">
-                              Enable 2FA
-                            </h4>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                              Add an extra layer of security to your account
-                            </p>
-                          </div>
-                          <div className="flex items-center">
-                            <Switch
-                              id="twoFactorAuth"
-                              checked={settings.twoFactorAuth}
-                              onCheckedChange={(checked) =>
-                                handleSettingChange("twoFactorAuth", checked)
-                              }
-                            />
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </TabsContent>
 
-                  {/* Preferences Settings */}
-                  <TabsContent value="preferences" className="space-y-6">
-                    <form onSubmit={handleSettingsSubmit} className="space-y-6">
-                      <div className="space-y-4">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                          Appearance
-                        </h3>
+                  {/* Account Settings */}
+                  <TabsContent value="account" className="space-y-6">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                        Delete Account
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        Permanently delete your account and all associated data.
+                        This action cannot be undone.
+                      </p>
 
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            {settings.darkMode ? (
-                              <FiMoon className="text-gray-900 dark:text-white" />
-                            ) : (
-                              <FiSun className="text-gray-900 dark:text-white" />
-                            )}
-                            <div>
-                              <h4 className="font-medium text-gray-900 dark:text-white">
-                                Dark Mode
-                              </h4>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">
-                                Toggle between light and dark theme
-                              </p>
-                            </div>
-                          </div>
-                          <Switch
-                            id="darkMode"
-                            checked={darkMode}
-                            onCheckedChange={handleDarkModeChange}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-4 pt-6 border-t border-gray-200 dark:border-gray-700">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                          Notifications
-                        </h3>
-
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-2">
-                              <FiBell className="text-gray-900 dark:text-white" />
-                              <div>
-                                <h4 className="font-medium text-gray-900 dark:text-white">
-                                  Email Notifications
-                                </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
-                                  Receive updates and alerts via email
-                                </p>
-                              </div>
-                            </div>
-                            <Switch
-                              id="emailNotifications"
-                              checked={settings.emailNotifications}
-                              onCheckedChange={(checked) =>
-                                handleSettingChange(
-                                  "emailNotifications",
-                                  checked
-                                )
-                              }
-                            />
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-2">
-                              <FiBell className="text-gray-900 dark:text-white" />
-                              <div>
-                                <h4 className="font-medium text-gray-900 dark:text-white">
-                                  SMS Notifications
-                                </h4>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
-                                  Receive updates and alerts via SMS
-                                </p>
-                              </div>
-                            </div>
-                            <Switch
-                              id="smsNotifications"
-                              checked={settings.smsNotifications}
-                              onCheckedChange={(checked) =>
-                                handleSettingChange("smsNotifications", checked)
-                              }
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-4 pt-6 border-t border-gray-200 dark:border-gray-700">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                          Language
-                        </h3>
-
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <FiGlobe className="text-gray-900 dark:text-white" />
-                            <div>
-                              <h4 className="font-medium text-gray-900 dark:text-white">
-                                Preferred Language
-                              </h4>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">
-                                Select your preferred language for the
-                                application
-                              </p>
-                            </div>
-                          </div>
-                          <select
-                            value={settings.language}
-                            onChange={(e) =>
-                              handleSettingChange("language", e.target.value)
-                            }
-                            className="rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-3 py-2"
-                          >
-                            <option value="english">English</option>
-                            <option value="spanish">Spanish</option>
-                            <option value="french">French</option>
-                            <option value="german">German</option>
-                            <option value="chinese">Chinese</option>
-                          </select>
-                        </div>
+                      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
+                        <p className="text-red-800 dark:text-red-300 text-sm">
+                          Warning: Deleting your account will remove all your
+                          data and cannot be reversed.
+                        </p>
                       </div>
 
                       <Button
-                        type="submit"
-                        className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-medium py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
-                        disabled={isSaving}
+                        variant="destructive"
+                        onClick={handleDeleteAccount}
+                        disabled={isDeleting}
+                        className="w-full"
                       >
-                        {isSaving ? (
+                        {isDeleting ? (
                           <div className="flex items-center justify-center">
                             <FiLoader className="animate-spin mr-2" />
-                            Saving...
+                            Deleting...
                           </div>
                         ) : (
-                          <div className="flex items-center justify-center">
-                            <FiSave className="mr-2" />
-                            Save Preferences
-                          </div>
+                          "Delete Account"
                         )}
                       </Button>
-                    </form>
+                    </div>
                   </TabsContent>
                 </div>
               </Tabs>

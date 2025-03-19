@@ -1,0 +1,2572 @@
+{
+  "settings": {
+    "languages": [
+      "id"
+    ],
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "id"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "id": {
+        "settings": {
+          "locale": "id",
+          "trainByDomain": false,
+          "tag": "domain-manager-id",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "halo": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "hai": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "pagi,selamat": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "selamat,siang": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "selamat,sore": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "malam,selamat": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "kamu,siapa": {
+            "intent": "identity",
+            "domain": "default"
+          },
+          "bicara,dengan,saya,siapa": {
+            "intent": "identity",
+            "domain": "default"
+          },
+          "apa,ini,layan": {
+            "intent": "identity",
+            "domain": "default"
+          },
+          "apa,cbank,itu": {
+            "intent": "about_cbank",
+            "domain": "default"
+          },
+          "cbank,cerita,tentang": {
+            "intent": "about_cbank",
+            "domain": "default"
+          },
+          "cbank,informasi,tentang": {
+            "intent": "about_cbank",
+            "domain": "default"
+          },
+          "bunga,cbank,di,tabung": {
+            "intent": "interest_rate",
+            "domain": "default"
+          },
+          "apa,bunga,suku,tabung": {
+            "intent": "interest_rate",
+            "domain": "default"
+          },
+          "bunga,deposito,suku": {
+            "intent": "interest_rate",
+            "domain": "default"
+          },
+          "apa,bunga,kpr": {
+            "intent": "interest_rate",
+            "domain": "default"
+          },
+          "apa,bunga,persen,pinjam": {
+            "intent": "interest_rate",
+            "domain": "default"
+          },
+          "bunga,kartu,kredit": {
+            "intent": "interest_rate",
+            "domain": "default"
+          },
+          "cabang,dekat,mana": {
+            "intent": "nearest_branch",
+            "domain": "default"
+          },
+          "atm,cbank,lokasi": {
+            "intent": "nearest_branch",
+            "domain": "default"
+          },
+          "alamat,cbank,kantor": {
+            "intent": "nearest_branch",
+            "domain": "default"
+          },
+          "cbank,di,kota,mana,saja": {
+            "intent": "nearest_branch",
+            "domain": "default"
+          },
+          "cashback,internasional,transaksi": {
+            "intent": "cashback",
+            "domain": "default"
+          },
+          "ada,apa,cashback,program": {
+            "intent": "cashback",
+            "domain": "default"
+          },
+          "kartu,kredit,promo": {
+            "intent": "cashback",
+            "domain": "default"
+          },
+          "cbank,dengan,diskon,kartu": {
+            "intent": "cashback",
+            "domain": "default"
+          },
+          "point,reward": {
+            "intent": "cashback",
+            "domain": "default"
+          },
+          "buka,cara,rekening": {
+            "intent": "open_account",
+            "domain": "default"
+          },
+          "buka,syarat,tabung": {
+            "intent": "open_account",
+            "domain": "default"
+          },
+          "buka,dokumen,rekening,untuk": {
+            "intent": "open_account",
+            "domain": "default"
+          },
+          "bisa,buka,online,rekening": {
+            "intent": "open_account",
+            "domain": "default"
+          },
+          "apa,awal,setor": {
+            "intent": "open_account",
+            "domain": "default"
+          },
+          "banking,cara,daftar,mobile": {
+            "intent": "mobile_banking",
+            "domain": "default"
+          },
+          "aktivasi,aplikasi,cbank": {
+            "intent": "mobile_banking",
+            "domain": "default"
+          },
+          "banking,lupa,mobile,password": {
+            "intent": "mobile_banking",
+            "domain": "default"
+          },
+          "aplikasi,cbank,fitur": {
+            "intent": "mobile_banking",
+            "domain": "default"
+          },
+          "aplikasi,biaya,di,transaksi": {
+            "intent": "mobile_banking",
+            "domain": "default"
+          },
+          "apply,cara,kartu,kredit": {
+            "intent": "credit_card",
+            "domain": "default"
+          },
+          "aju,kartu,kredit,syarat": {
+            "intent": "credit_card",
+            "domain": "default"
+          },
+          "kartu,kredit,limit": {
+            "intent": "credit_card",
+            "domain": "default"
+          },
+          "cbank,jenis,kartu,kredit": {
+            "intent": "credit_card",
+            "domain": "default"
+          },
+          "bayar,cara,kartu,kredit,tagih": {
+            "intent": "credit_card",
+            "domain": "default"
+          },
+          "aju,kpr": {
+            "intent": "loans",
+            "domain": "default"
+          },
+          "pinjam,syarat": {
+            "intent": "loans",
+            "domain": "default"
+          },
+          "agun,kredit,tanpa": {
+            "intent": "loans",
+            "domain": "default"
+          },
+          "modal,pinjam,usaha": {
+            "intent": "loans",
+            "domain": "default"
+          },
+          "jangka,kredit,waktu": {
+            "intent": "loans",
+            "domain": "default"
+          },
+          "customer,nomor,service": {
+            "intent": "customer_service",
+            "domain": "default"
+          },
+          "cara,cs,hubung": {
+            "intent": "customer_service",
+            "domain": "default"
+          },
+          "call,center,jam,layan": {
+            "intent": "customer_service",
+            "domain": "default"
+          },
+          "adu,email": {
+            "intent": "customer_service",
+            "domain": "default"
+          },
+          "komplain,layan": {
+            "intent": "customer_service",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "greeting": "default",
+          "identity": "default",
+          "about_cbank": "default",
+          "interest_rate": "default",
+          "nearest_branch": "default",
+          "cashback": "default",
+          "open_account": "default",
+          "mobile_banking": "default",
+          "credit_card": "default",
+          "loans": "default",
+          "customer_service": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "halo",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "hai",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "selamat pagi",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "selamat siang",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "selamat sore",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "selamat malam",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "siapa kamu?",
+            "intent": "identity"
+          },
+          {
+            "domain": "default",
+            "utterance": "kamu siapa?",
+            "intent": "identity"
+          },
+          {
+            "domain": "default",
+            "utterance": "dengan siapa saya berbicara?",
+            "intent": "identity"
+          },
+          {
+            "domain": "default",
+            "utterance": "ini layanan apa?",
+            "intent": "identity"
+          },
+          {
+            "domain": "default",
+            "utterance": "apa itu Cbank?",
+            "intent": "about_cbank"
+          },
+          {
+            "domain": "default",
+            "utterance": "ceritakan tentang Cbank",
+            "intent": "about_cbank"
+          },
+          {
+            "domain": "default",
+            "utterance": "informasi tentang Cbank",
+            "intent": "about_cbank"
+          },
+          {
+            "domain": "default",
+            "utterance": "Cbank itu apa?",
+            "intent": "about_cbank"
+          },
+          {
+            "domain": "default",
+            "utterance": "bunga tabungan di Cbank?",
+            "intent": "interest_rate"
+          },
+          {
+            "domain": "default",
+            "utterance": "berapa suku bunga tabungan?",
+            "intent": "interest_rate"
+          },
+          {
+            "domain": "default",
+            "utterance": "suku bunga deposito?",
+            "intent": "interest_rate"
+          },
+          {
+            "domain": "default",
+            "utterance": "bunga KPR berapa?",
+            "intent": "interest_rate"
+          },
+          {
+            "domain": "default",
+            "utterance": "berapa persen bunga pinjaman?",
+            "intent": "interest_rate"
+          },
+          {
+            "domain": "default",
+            "utterance": "bunga kartu kredit?",
+            "intent": "interest_rate"
+          },
+          {
+            "domain": "default",
+            "utterance": "dimana cabang terdekat?",
+            "intent": "nearest_branch"
+          },
+          {
+            "domain": "default",
+            "utterance": "lokasi ATM Cbank?",
+            "intent": "nearest_branch"
+          },
+          {
+            "domain": "default",
+            "utterance": "alamat kantor Cbank?",
+            "intent": "nearest_branch"
+          },
+          {
+            "domain": "default",
+            "utterance": "Cbank di kota mana saja?",
+            "intent": "nearest_branch"
+          },
+          {
+            "domain": "default",
+            "utterance": "cashback transaksi internasional?",
+            "intent": "cashback"
+          },
+          {
+            "domain": "default",
+            "utterance": "apakah ada program cashback?",
+            "intent": "cashback"
+          },
+          {
+            "domain": "default",
+            "utterance": "promo kartu kredit?",
+            "intent": "cashback"
+          },
+          {
+            "domain": "default",
+            "utterance": "diskon dengan kartu Cbank?",
+            "intent": "cashback"
+          },
+          {
+            "domain": "default",
+            "utterance": "reward point?",
+            "intent": "cashback"
+          },
+          {
+            "domain": "default",
+            "utterance": "cara buka rekening",
+            "intent": "open_account"
+          },
+          {
+            "domain": "default",
+            "utterance": "syarat buka tabungan",
+            "intent": "open_account"
+          },
+          {
+            "domain": "default",
+            "utterance": "dokumen untuk membuka rekening",
+            "intent": "open_account"
+          },
+          {
+            "domain": "default",
+            "utterance": "bisakah membuka rekening online?",
+            "intent": "open_account"
+          },
+          {
+            "domain": "default",
+            "utterance": "berapa setoran awal?",
+            "intent": "open_account"
+          },
+          {
+            "domain": "default",
+            "utterance": "cara daftar mobile banking",
+            "intent": "mobile_banking"
+          },
+          {
+            "domain": "default",
+            "utterance": "aktivasi aplikasi Cbank",
+            "intent": "mobile_banking"
+          },
+          {
+            "domain": "default",
+            "utterance": "lupa password mobile banking",
+            "intent": "mobile_banking"
+          },
+          {
+            "domain": "default",
+            "utterance": "fitur aplikasi Cbank",
+            "intent": "mobile_banking"
+          },
+          {
+            "domain": "default",
+            "utterance": "biaya transaksi di aplikasi",
+            "intent": "mobile_banking"
+          },
+          {
+            "domain": "default",
+            "utterance": "cara apply kartu kredit",
+            "intent": "credit_card"
+          },
+          {
+            "domain": "default",
+            "utterance": "syarat pengajuan kartu kredit",
+            "intent": "credit_card"
+          },
+          {
+            "domain": "default",
+            "utterance": "limit kartu kredit",
+            "intent": "credit_card"
+          },
+          {
+            "domain": "default",
+            "utterance": "jenis kartu kredit Cbank",
+            "intent": "credit_card"
+          },
+          {
+            "domain": "default",
+            "utterance": "cara bayar tagihan kartu kredit",
+            "intent": "credit_card"
+          },
+          {
+            "domain": "default",
+            "utterance": "pengajuan KPR",
+            "intent": "loans"
+          },
+          {
+            "domain": "default",
+            "utterance": "syarat pinjaman",
+            "intent": "loans"
+          },
+          {
+            "domain": "default",
+            "utterance": "kredit tanpa agunan",
+            "intent": "loans"
+          },
+          {
+            "domain": "default",
+            "utterance": "pinjaman modal usaha",
+            "intent": "loans"
+          },
+          {
+            "domain": "default",
+            "utterance": "jangka waktu kredit",
+            "intent": "loans"
+          },
+          {
+            "domain": "default",
+            "utterance": "nomor customer service",
+            "intent": "customer_service"
+          },
+          {
+            "domain": "default",
+            "utterance": "cara menghubungi CS",
+            "intent": "customer_service"
+          },
+          {
+            "domain": "default",
+            "utterance": "jam layanan call center",
+            "intent": "customer_service"
+          },
+          {
+            "domain": "default",
+            "utterance": "email pengaduan",
+            "intent": "customer_service"
+          },
+          {
+            "domain": "default",
+            "utterance": "komplain layanan",
+            "intent": "customer_service"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "id",
+              "tag": "nlu-id",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "halo": 1,
+              "hai": 1,
+              "selamat": 1,
+              "pagi": 1,
+              "siang": 1,
+              "sore": 1,
+              "malam": 1,
+              "siapa": 1,
+              "kamu": 1,
+              "dengan": 1,
+              "saya": 1,
+              "bicara": 1,
+              "ini": 1,
+              "layan": 1,
+              "apa": 1,
+              "itu": 1,
+              "cbank": 1,
+              "cerita": 1,
+              "tentang": 1,
+              "informasi": 1,
+              "bunga": 1,
+              "tabung": 1,
+              "di": 1,
+              "suku": 1,
+              "deposito": 1,
+              "kpr": 1,
+              "persen": 1,
+              "pinjam": 1,
+              "kartu": 1,
+              "kredit": 1,
+              "mana": 1,
+              "cabang": 1,
+              "dekat": 1,
+              "lokasi": 1,
+              "atm": 1,
+              "alamat": 1,
+              "kantor": 1,
+              "kota": 1,
+              "saja": 1,
+              "cashback": 1,
+              "transaksi": 1,
+              "internasional": 1,
+              "ada": 1,
+              "program": 1,
+              "promo": 1,
+              "diskon": 1,
+              "reward": 1,
+              "point": 1,
+              "cara": 1,
+              "buka": 1,
+              "rekening": 1,
+              "syarat": 1,
+              "dokumen": 1,
+              "untuk": 1,
+              "bisa": 1,
+              "online": 1,
+              "setor": 1,
+              "awal": 1,
+              "daftar": 1,
+              "mobile": 1,
+              "banking": 1,
+              "aktivasi": 1,
+              "aplikasi": 1,
+              "lupa": 1,
+              "password": 1,
+              "fitur": 1,
+              "biaya": 1,
+              "apply": 1,
+              "aju": 1,
+              "limit": 1,
+              "jenis": 1,
+              "bayar": 1,
+              "tagih": 1,
+              "tanpa": 1,
+              "agun": 1,
+              "modal": 1,
+              "usaha": 1,
+              "jangka": 1,
+              "waktu": 1,
+              "nomor": 1,
+              "customer": 1,
+              "service": 1,
+              "hubung": 1,
+              "cs": 1,
+              "jam": 1,
+              "call": 1,
+              "center": 1,
+              "email": 1,
+              "adu": 1,
+              "komplain": 1
+            },
+            "intents": {
+              "greeting": 1,
+              "identity": 1,
+              "about_cbank": 1,
+              "interest_rate": 1,
+              "nearest_branch": 1,
+              "cashback": 1,
+              "open_account": 1,
+              "mobile_banking": 1,
+              "credit_card": 1,
+              "loans": 1,
+              "customer_service": 1
+            },
+            "intentFeatures": {
+              "greeting": {
+                "halo": 1,
+                "hai": 1,
+                "selamat": 1,
+                "pagi": 1,
+                "siang": 1,
+                "sore": 1,
+                "malam": 1
+              },
+              "identity": {
+                "siapa": 1,
+                "kamu": 1,
+                "dengan": 1,
+                "saya": 1,
+                "bicara": 1,
+                "ini": 1,
+                "layan": 1,
+                "apa": 1
+              },
+              "about_cbank": {
+                "apa": 1,
+                "itu": 1,
+                "cbank": 1,
+                "cerita": 1,
+                "tentang": 1,
+                "informasi": 1
+              },
+              "interest_rate": {
+                "bunga": 1,
+                "tabung": 1,
+                "di": 1,
+                "cbank": 1,
+                "apa": 1,
+                "suku": 1,
+                "deposito": 1,
+                "kpr": 1,
+                "persen": 1,
+                "pinjam": 1,
+                "kartu": 1,
+                "kredit": 1
+              },
+              "nearest_branch": {
+                "mana": 1,
+                "cabang": 1,
+                "dekat": 1,
+                "lokasi": 1,
+                "atm": 1,
+                "cbank": 1,
+                "alamat": 1,
+                "kantor": 1,
+                "di": 1,
+                "kota": 1,
+                "saja": 1
+              },
+              "cashback": {
+                "cashback": 1,
+                "transaksi": 1,
+                "internasional": 1,
+                "apa": 1,
+                "ada": 1,
+                "program": 1,
+                "promo": 1,
+                "kartu": 1,
+                "kredit": 1,
+                "diskon": 1,
+                "dengan": 1,
+                "cbank": 1,
+                "reward": 1,
+                "point": 1
+              },
+              "open_account": {
+                "cara": 1,
+                "buka": 1,
+                "rekening": 1,
+                "syarat": 1,
+                "tabung": 1,
+                "dokumen": 1,
+                "untuk": 1,
+                "bisa": 1,
+                "online": 1,
+                "apa": 1,
+                "setor": 1,
+                "awal": 1
+              },
+              "mobile_banking": {
+                "cara": 1,
+                "daftar": 1,
+                "mobile": 1,
+                "banking": 1,
+                "aktivasi": 1,
+                "aplikasi": 1,
+                "cbank": 1,
+                "lupa": 1,
+                "password": 1,
+                "fitur": 1,
+                "biaya": 1,
+                "transaksi": 1,
+                "di": 1
+              },
+              "credit_card": {
+                "cara": 1,
+                "apply": 1,
+                "kartu": 1,
+                "kredit": 1,
+                "syarat": 1,
+                "aju": 1,
+                "limit": 1,
+                "jenis": 1,
+                "cbank": 1,
+                "bayar": 1,
+                "tagih": 1
+              },
+              "loans": {
+                "aju": 1,
+                "kpr": 1,
+                "syarat": 1,
+                "pinjam": 1,
+                "kredit": 1,
+                "tanpa": 1,
+                "agun": 1,
+                "modal": 1,
+                "usaha": 1,
+                "jangka": 1,
+                "waktu": 1
+              },
+              "customer_service": {
+                "nomor": 1,
+                "customer": 1,
+                "service": 1,
+                "cara": 1,
+                "hubung": 1,
+                "cs": 1,
+                "jam": 1,
+                "layan": 1,
+                "call": 1,
+                "center": 1,
+                "email": 1,
+                "adu": 1,
+                "komplain": 1
+              }
+            },
+            "featuresToIntent": {
+              "halo": [
+                "greeting"
+              ],
+              "hai": [
+                "greeting"
+              ],
+              "selamat": [
+                "greeting"
+              ],
+              "pagi": [
+                "greeting"
+              ],
+              "siang": [
+                "greeting"
+              ],
+              "sore": [
+                "greeting"
+              ],
+              "malam": [
+                "greeting"
+              ],
+              "siapa": [
+                "identity"
+              ],
+              "kamu": [
+                "identity"
+              ],
+              "dengan": [
+                "identity",
+                "cashback"
+              ],
+              "saya": [
+                "identity"
+              ],
+              "bicara": [
+                "identity"
+              ],
+              "ini": [
+                "identity"
+              ],
+              "layan": [
+                "identity",
+                "customer_service"
+              ],
+              "apa": [
+                "identity",
+                "about_cbank",
+                "interest_rate",
+                "cashback",
+                "open_account"
+              ],
+              "itu": [
+                "about_cbank"
+              ],
+              "cbank": [
+                "about_cbank",
+                "interest_rate",
+                "nearest_branch",
+                "cashback",
+                "mobile_banking",
+                "credit_card"
+              ],
+              "cerita": [
+                "about_cbank"
+              ],
+              "tentang": [
+                "about_cbank"
+              ],
+              "informasi": [
+                "about_cbank"
+              ],
+              "bunga": [
+                "interest_rate"
+              ],
+              "tabung": [
+                "interest_rate",
+                "open_account"
+              ],
+              "di": [
+                "interest_rate",
+                "nearest_branch",
+                "mobile_banking"
+              ],
+              "suku": [
+                "interest_rate"
+              ],
+              "deposito": [
+                "interest_rate"
+              ],
+              "kpr": [
+                "interest_rate",
+                "loans"
+              ],
+              "persen": [
+                "interest_rate"
+              ],
+              "pinjam": [
+                "interest_rate",
+                "loans"
+              ],
+              "kartu": [
+                "interest_rate",
+                "cashback",
+                "credit_card"
+              ],
+              "kredit": [
+                "interest_rate",
+                "cashback",
+                "credit_card",
+                "loans"
+              ],
+              "mana": [
+                "nearest_branch"
+              ],
+              "cabang": [
+                "nearest_branch"
+              ],
+              "dekat": [
+                "nearest_branch"
+              ],
+              "lokasi": [
+                "nearest_branch"
+              ],
+              "atm": [
+                "nearest_branch"
+              ],
+              "alamat": [
+                "nearest_branch"
+              ],
+              "kantor": [
+                "nearest_branch"
+              ],
+              "kota": [
+                "nearest_branch"
+              ],
+              "saja": [
+                "nearest_branch"
+              ],
+              "cashback": [
+                "cashback"
+              ],
+              "transaksi": [
+                "cashback",
+                "mobile_banking"
+              ],
+              "internasional": [
+                "cashback"
+              ],
+              "ada": [
+                "cashback"
+              ],
+              "program": [
+                "cashback"
+              ],
+              "promo": [
+                "cashback"
+              ],
+              "diskon": [
+                "cashback"
+              ],
+              "reward": [
+                "cashback"
+              ],
+              "point": [
+                "cashback"
+              ],
+              "cara": [
+                "open_account",
+                "mobile_banking",
+                "credit_card",
+                "customer_service"
+              ],
+              "buka": [
+                "open_account"
+              ],
+              "rekening": [
+                "open_account"
+              ],
+              "syarat": [
+                "open_account",
+                "credit_card",
+                "loans"
+              ],
+              "dokumen": [
+                "open_account"
+              ],
+              "untuk": [
+                "open_account"
+              ],
+              "bisa": [
+                "open_account"
+              ],
+              "online": [
+                "open_account"
+              ],
+              "setor": [
+                "open_account"
+              ],
+              "awal": [
+                "open_account"
+              ],
+              "daftar": [
+                "mobile_banking"
+              ],
+              "mobile": [
+                "mobile_banking"
+              ],
+              "banking": [
+                "mobile_banking"
+              ],
+              "aktivasi": [
+                "mobile_banking"
+              ],
+              "aplikasi": [
+                "mobile_banking"
+              ],
+              "lupa": [
+                "mobile_banking"
+              ],
+              "password": [
+                "mobile_banking"
+              ],
+              "fitur": [
+                "mobile_banking"
+              ],
+              "biaya": [
+                "mobile_banking"
+              ],
+              "apply": [
+                "credit_card"
+              ],
+              "aju": [
+                "credit_card",
+                "loans"
+              ],
+              "limit": [
+                "credit_card"
+              ],
+              "jenis": [
+                "credit_card"
+              ],
+              "bayar": [
+                "credit_card"
+              ],
+              "tagih": [
+                "credit_card"
+              ],
+              "tanpa": [
+                "loans"
+              ],
+              "agun": [
+                "loans"
+              ],
+              "modal": [
+                "loans"
+              ],
+              "usaha": [
+                "loans"
+              ],
+              "jangka": [
+                "loans"
+              ],
+              "waktu": [
+                "loans"
+              ],
+              "nomor": [
+                "customer_service"
+              ],
+              "customer": [
+                "customer_service"
+              ],
+              "service": [
+                "customer_service"
+              ],
+              "hubung": [
+                "customer_service"
+              ],
+              "cs": [
+                "customer_service"
+              ],
+              "jam": [
+                "customer_service"
+              ],
+              "call": [
+                "customer_service"
+              ],
+              "center": [
+                "customer_service"
+              ],
+              "email": [
+                "customer_service"
+              ],
+              "adu": [
+                "customer_service"
+              ],
+              "komplain": [
+                "customer_service"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "id",
+                "tag": "nlu-id",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "halo",
+                "hai",
+                "selamat",
+                "pagi",
+                "siang",
+                "sore",
+                "malam",
+                "siapa",
+                "kamu",
+                "dengan",
+                "saya",
+                "bicara",
+                "ini",
+                "layan",
+                "apa",
+                "itu",
+                "cbank",
+                "cerita",
+                "tentang",
+                "informasi",
+                "bunga",
+                "tabung",
+                "di",
+                "suku",
+                "deposito",
+                "kpr",
+                "persen",
+                "pinjam",
+                "kartu",
+                "kredit",
+                "mana",
+                "cabang",
+                "dekat",
+                "lokasi",
+                "atm",
+                "alamat",
+                "kantor",
+                "kota",
+                "saja",
+                "cashback",
+                "transaksi",
+                "internasional",
+                "ada",
+                "program",
+                "promo",
+                "diskon",
+                "reward",
+                "point",
+                "cara",
+                "buka",
+                "rekening",
+                "syarat",
+                "dokumen",
+                "untuk",
+                "bisa",
+                "online",
+                "setor",
+                "awal",
+                "daftar",
+                "mobile",
+                "banking",
+                "aktivasi",
+                "aplikasi",
+                "lupa",
+                "password",
+                "fitur",
+                "biaya",
+                "apply",
+                "aju",
+                "limit",
+                "jenis",
+                "bayar",
+                "tagih",
+                "tanpa",
+                "agun",
+                "modal",
+                "usaha",
+                "jangka",
+                "waktu",
+                "nomor",
+                "customer",
+                "service",
+                "hubung",
+                "cs",
+                "jam",
+                "call",
+                "center",
+                "email",
+                "adu",
+                "komplain"
+              ],
+              "intents": [
+                "greeting",
+                "identity",
+                "about_cbank",
+                "interest_rate",
+                "nearest_branch",
+                "cashback",
+                "open_account",
+                "mobile_banking",
+                "credit_card",
+                "loans",
+                "customer_service"
+              ],
+              "perceptrons": [
+                [
+                  10.546749114990234,
+                  10.542025566101074,
+                  8.815018653869629,
+                  2.2324016094207764,
+                  2.2155935764312744,
+                  2.197399854660034,
+                  2.175551176071167,
+                  -1.8639531135559082,
+                  -1.4003905057907104,
+                  -0.4819239675998688,
+                  -0.46238797903060913,
+                  -0.46238797903060913,
+                  -0.36431679129600525,
+                  -2.011867046356201,
+                  -1.9784048795700073,
+                  -0.3094275891780853,
+                  -2.3885645866394043,
+                  -0.3059408366680145,
+                  -0.633444607257843,
+                  -0.27609074115753174,
+                  -1.520190954208374,
+                  -0.6280525922775269,
+                  -0.7008755207061768,
+                  -0.9447255730628967,
+                  -0.7905328273773193,
+                  -1.6394789218902588,
+                  -0.0620516799390316,
+                  -1.8145110607147217,
+                  -0.9445175528526306,
+                  -2.08418869972229,
+                  -1.1332530975341797,
+                  -1.060256838798523,
+                  -1.060256838798523,
+                  -0.4385809898376465,
+                  -0.4385809898376465,
+                  -0.4369308054447174,
+                  -0.4369308054447174,
+                  -0.04813084006309509,
+                  -0.04813084006309509,
+                  -1.0480082035064697,
+                  -1.3415908813476562,
+                  -0.8647164106369019,
+                  -0.1638697236776352,
+                  -0.1638697236776352,
+                  -0.3566472828388214,
+                  -0.009767992421984673,
+                  -1.6085858345031738,
+                  -1.6085858345031738,
+                  -1.511156678199768,
+                  -1.4000357389450073,
+                  -1.0697418451309204,
+                  -1.3888005018234253,
+                  -0.39677900075912476,
+                  -0.39677900075912476,
+                  -0.3939429819583893,
+                  -0.3939429819583893,
+                  -0.6325711607933044,
+                  -0.6325711607933044,
+                  -0.2724747657775879,
+                  -0.9669616222381592,
+                  -0.9669616222381592,
+                  -0.1380229890346527,
+                  -0.7402699589729309,
+                  -0.6589717864990234,
+                  -0.6589717864990234,
+                  -0.12567241489887238,
+                  -0.4748864769935608,
+                  -0.04019835218787193,
+                  -1.5616613626480103,
+                  -0.23087234795093536,
+                  0,
+                  -0.005023282952606678,
+                  -0.005023282952606678,
+                  -0.5794533491134644,
+                  -0.5794533491134644,
+                  -0.7187069654464722,
+                  -0.7187069654464722,
+                  -0.576188862323761,
+                  -0.576188862323761,
+                  -1.0753695964813232,
+                  -1.0753695964813232,
+                  -1.0753695964813232,
+                  -0.8563382029533386,
+                  -0.8563382029533386,
+                  -0.43151605129241943,
+                  -0.43151605129241943,
+                  -0.43151605129241943,
+                  -1.5882400274276733,
+                  -1.5882400274276733,
+                  -1.1555579900741577,
+                  3.243799304310907
+                ],
+                [
+                  -0.3253900110721588,
+                  -0.31764450669288635,
+                  -0.4364911913871765,
+                  -0.11827069520950317,
+                  -0.1067446768283844,
+                  -0.09551490098237991,
+                  -0.08501650393009186,
+                  8.11065673828125,
+                  5.990199565887451,
+                  1.7558046579360962,
+                  2.119582176208496,
+                  2.119582176208496,
+                  7.810153484344482,
+                  3.3007471561431885,
+                  2.8042800426483154,
+                  -1.0104323625564575,
+                  -1.9721050262451172,
+                  -0.1312689483165741,
+                  -0.2947484254837036,
+                  -0.10845495015382767,
+                  -1.925236701965332,
+                  -0.5783423781394958,
+                  -0.23388296365737915,
+                  -0.5343534350395203,
+                  -0.09720208495855331,
+                  -1.0378308296203613,
+                  -0.38748589158058167,
+                  -0.6786552667617798,
+                  -0.6830452084541321,
+                  -0.6083211898803711,
+                  -0.34312477707862854,
+                  -0.32139497995376587,
+                  -0.32139497995376587,
+                  -0.047418612986803055,
+                  -0.047418612986803055,
+                  -0.03858966752886772,
+                  -0.03858966752886772,
+                  -0.010463743470609188,
+                  -0.010463743470609188,
+                  -1.1708400249481201,
+                  -0.4021027982234955,
+                  -0.22519440948963165,
+                  -0.9042555093765259,
+                  -0.9042555093765259,
+                  -0.1319834440946579,
+                  -0.32655656337738037,
+                  -0.3678882420063019,
+                  -0.3678882420063019,
+                  -0.4783957302570343,
+                  -0.5092743635177612,
+                  -0.3992350101470947,
+                  -0.27189764380455017,
+                  -0.12042031437158585,
+                  -0.12042031437158585,
+                  -0.09935921430587769,
+                  -0.09935921430587769,
+                  -1.477645993232727,
+                  -1.477645993232727,
+                  -0.10605879873037338,
+                  -0.3081146776676178,
+                  -0.3081146776676178,
+                  0,
+                  -0.1319565623998642,
+                  -0.1652035117149353,
+                  -0.1652035117149353,
+                  0,
+                  -0.1319565623998642,
+                  -0.02209302969276905,
+                  -0.1959417164325714,
+                  -0.03282198682427406,
+                  0,
+                  -0.002271820092573762,
+                  -0.002271820092573762,
+                  -0.12476698309183121,
+                  -0.12476698309183121,
+                  -0.1296999156475067,
+                  -0.1296999156475067,
+                  -0.1091533899307251,
+                  -0.1091533899307251,
+                  -0.23604312539100647,
+                  -0.23604312539100647,
+                  -0.23604312539100647,
+                  -0.1453552097082138,
+                  -0.1453552097082138,
+                  -1.214950680732727,
+                  -1.214950680732727,
+                  -1.214950680732727,
+                  -0.2703348994255066,
+                  -0.2703348994255066,
+                  -3.293901205062866,
+                  0.17241576122179014
+                ],
+                [
+                  -0.003189085517078638,
+                  -0.003055411158129573,
+                  -0.0158837977796793,
+                  -0.0029273401014506817,
+                  -0.0026819342747330666,
+                  -0.0023957500234246254,
+                  -0.002108024898916483,
+                  -0.005943795666098595,
+                  -0.005943795666098595,
+                  -1.043994426727295,
+                  0,
+                  0,
+                  -1.229304552078247,
+                  -1.2428977489471436,
+                  2.9747047424316406,
+                  7.457949161529541,
+                  4.349642276763916,
+                  3.5086183547973633,
+                  6.958257675170898,
+                  3.4508256912231445,
+                  -2.160675048828125,
+                  -1.0679210424423218,
+                  -1.6467008590698242,
+                  -0.29054221510887146,
+                  -0.04230213910341263,
+                  -0.49856293201446533,
+                  -0.36192986369132996,
+                  -0.3660774230957031,
+                  -2.0352039337158203,
+                  -0.9580502510070801,
+                  -0.9717802405357361,
+                  -0.1530715823173523,
+                  -0.1530715823173523,
+                  -1.9279059171676636,
+                  -1.9279059171676636,
+                  -1.9263612031936646,
+                  -1.9263612031936646,
+                  -0.7747072577476501,
+                  -0.7747072577476501,
+                  -0.916473925113678,
+                  -0.08671221137046814,
+                  -0.08671221137046814,
+                  -0.8090288639068604,
+                  -0.8090288639068604,
+                  -0.039756983518600464,
+                  -1.043994426727295,
+                  -0.06680450588464737,
+                  -0.06680450588464737,
+                  -0.0875217616558075,
+                  -0.1348840445280075,
+                  -0.12627623975276947,
+                  -0.007472091820091009,
+                  -0.031635090708732605,
+                  -0.031635090708732605,
+                  -0.02594292350113392,
+                  -0.02594292350113392,
+                  -1.2379186153411865,
+                  -1.2379186153411865,
+                  -0.02858704887330532,
+                  -0.056476715952157974,
+                  -0.056476715952157974,
+                  -1.3289611339569092,
+                  -2.5917723178863525,
+                  -0.016730349510908127,
+                  -0.016730349510908127,
+                  -1.2576251029968262,
+                  0,
+                  0,
+                  -0.0010566910495981574,
+                  0,
+                  -0.8584315180778503,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  -0.0038634345401078463,
+                  -0.0038634345401078463,
+                  -0.0038634345401078463,
+                  -0.001865078811533749,
+                  -0.001865078811533749,
+                  -0.003623077180236578,
+                  -0.003623077180236578,
+                  -0.003623077180236578,
+                  -0.0034710599575191736,
+                  -0.0034710599575191736,
+                  -0.0031734039075672626,
+                  -0.49878417988398865
+                ],
+                [
+                  -0.07657511532306671,
+                  -0.07364313304424286,
+                  -0.18972429633140564,
+                  -0.04636983945965767,
+                  -0.04159124195575714,
+                  -0.03682783246040344,
+                  -0.03235464170575142,
+                  -0.11142552644014359,
+                  -0.0904199406504631,
+                  -0.2352028638124466,
+                  -0.013789009302854538,
+                  -0.013789009302854538,
+                  -0.6069986820220947,
+                  -0.7152798175811768,
+                  0.4297194182872772,
+                  -0.8352063298225403,
+                  -0.48627033829689026,
+                  0,
+                  0,
+                  0,
+                  12.520960807800293,
+                  1.0099676847457886,
+                  1.7214410305023193,
+                  0.8582532405853271,
+                  1.4575412273406982,
+                  1.7673139572143555,
+                  1.2314928770065308,
+                  0.6547790765762329,
+                  0.9537816643714905,
+                  0.8266523480415344,
+                  -0.5456512570381165,
+                  -0.19627870619297028,
+                  -0.19627870619297028,
+                  -0.17956165969371796,
+                  -0.17956165969371796,
+                  -0.1744101196527481,
+                  -0.1744101196527481,
+                  -0.2548828721046448,
+                  -0.2548828721046448,
+                  -0.8848457932472229,
+                  -0.5660356283187866,
+                  -0.1619383692741394,
+                  -0.642077624797821,
+                  -0.642077624797821,
+                  -1.2217345237731934,
+                  -0.19428753852844238,
+                  -0.22168901562690735,
+                  -0.22168901562690735,
+                  -0.8980134129524231,
+                  -0.996198296546936,
+                  -0.29763418436050415,
+                  -1.0578292608261108,
+                  -0.0736679881811142,
+                  -0.0736679881811142,
+                  -0.05616047978401184,
+                  -0.05616047978401184,
+                  -0.7585539221763611,
+                  -0.7585539221763611,
+                  -0.07382725179195404,
+                  -0.1836259812116623,
+                  -0.1836259812116623,
+                  -0.053339820355176926,
+                  -0.4623231291770935,
+                  -0.07948973774909973,
+                  -0.07948973774909973,
+                  -0.03694098815321922,
+                  -0.3265903890132904,
+                  -0.44178837537765503,
+                  -1.2758982181549072,
+                  -1.2182233333587646,
+                  -0.7926741242408752,
+                  -0.20271115005016327,
+                  -0.20271115005016327,
+                  -0.18067866563796997,
+                  -0.18067866563796997,
+                  -0.383589506149292,
+                  -0.383589506149292,
+                  -0.17753072082996368,
+                  -0.17753072082996368,
+                  -0.06665084511041641,
+                  -0.06665084511041641,
+                  -0.06665084511041641,
+                  -0.007085019256919622,
+                  -0.007085019256919622,
+                  -0.039287589490413666,
+                  -0.039287589490413666,
+                  -0.039287589490413666,
+                  -0.06525158882141113,
+                  -0.06525158882141113,
+                  -0.03340330347418785,
+                  -0.4699943345830109
+                ],
+                [
+                  -0.5043454766273499,
+                  -0.500581681728363,
+                  -0.5076602101325989,
+                  -0.14006738364696503,
+                  -0.12761929631233215,
+                  -0.1181686744093895,
+                  -0.10734540224075317,
+                  -0.30808955430984497,
+                  -0.30133330821990967,
+                  -0.9605291485786438,
+                  -0.003378117922693491,
+                  -0.003378117922693491,
+                  -0.003471844131127,
+                  -0.3874909579753876,
+                  -1.9529058933258057,
+                  -1.6042866706848145,
+                  3.0421974658966064,
+                  -1.2253916263580322,
+                  -2.390258550643921,
+                  -1.1602458953857422,
+                  -1.8232927322387695,
+                  -1.9808145761489868,
+                  0.25399303436279297,
+                  0,
+                  0,
+                  -0.30840668082237244,
+                  0,
+                  -0.3595569431781769,
+                  -1.9532140493392944,
+                  -0.9806466102600098,
+                  6.064348220825195,
+                  3.856071949005127,
+                  3.856071949005127,
+                  5.367760181427002,
+                  5.367760181427002,
+                  5.366392135620117,
+                  5.366392135620117,
+                  2.2081785202026367,
+                  2.2081785202026367,
+                  -0.45451509952545166,
+                  -0.4065127670764923,
+                  -0.26096293330192566,
+                  -0.12835952639579773,
+                  -0.12835952639579773,
+                  -0.11972633749246597,
+                  -0.9514102339744568,
+                  -0.37874650955200195,
+                  -0.37874650955200195,
+                  -0.4615550637245178,
+                  -0.5534149408340454,
+                  -0.39084985852241516,
+                  -0.3340567350387573,
+                  -0.11054179072380066,
+                  -0.11054179072380066,
+                  -0.08906714618206024,
+                  -0.08906714618206024,
+                  -0.12001855671405792,
+                  -0.12001855671405792,
+                  -0.131419837474823,
+                  -0.3079278767108917,
+                  -0.3079278767108917,
+                  -1.1880428791046143,
+                  -2.4584054946899414,
+                  -0.13736379146575928,
+                  -0.13736379146575928,
+                  -1.1207844018936157,
+                  -0.10166046023368835,
+                  -0.00866489764302969,
+                  -0.31893712282180786,
+                  -0.003602770157158375,
+                  -0.7266073822975159,
+                  0,
+                  0,
+                  -0.023326070979237556,
+                  -0.023326070979237556,
+                  -0.17804165184497833,
+                  -0.17804165184497833,
+                  -0.009021810255944729,
+                  -0.009021810255944729,
+                  -0.2272978127002716,
+                  -0.2272978127002716,
+                  -0.2272978127002716,
+                  -0.11358059197664261,
+                  -0.11358059197664261,
+                  -0.14295484125614166,
+                  -0.14295484125614166,
+                  -0.14295484125614166,
+                  -0.30339962244033813,
+                  -0.30339962244033813,
+                  -0.2256438434123993,
+                  0.5086501482251423
+                ],
+                [
+                  -1.0366156101226807,
+                  -1.0268213748931885,
+                  -0.9080671072006226,
+                  -0.24756509065628052,
+                  -0.229899600148201,
+                  -0.21616129577159882,
+                  -0.20519088208675385,
+                  -1.8761930465698242,
+                  -0.2754621207714081,
+                  3.99251127243042,
+                  -1.5927759408950806,
+                  -1.5927759408950806,
+                  -0.4451683461666107,
+                  -0.9191561341285706,
+                  0.1107681542634964,
+                  -1.0562087297439575,
+                  -0.4897121787071228,
+                  -0.2780182659626007,
+                  -0.5249315500259399,
+                  -0.23951874673366547,
+                  -3.0611517429351807,
+                  -0.44738054275512695,
+                  -0.9927211999893188,
+                  -0.15893502533435822,
+                  -0.004008673131465912,
+                  -0.360947847366333,
+                  -0.10182208567857742,
+                  -0.5314411520957947,
+                  4.072119235992432,
+                  -1.772318959236145,
+                  -0.3558628559112549,
+                  -0.3558628559112549,
+                  -0.3558628559112549,
+                  -0.3210110366344452,
+                  -0.3210110366344452,
+                  -0.3145674467086792,
+                  -0.3145674467086792,
+                  0,
+                  0,
+                  6.831869602203369,
+                  2.6936187744140625,
+                  3.6937787532806396,
+                  3.1380581855773926,
+                  3.1380581855773926,
+                  10.460311889648438,
+                  5.584249019622803,
+                  6.581347465515137,
+                  6.581347465515137,
+                  -2.292259693145752,
+                  -1.003467321395874,
+                  -0.7066137790679932,
+                  -1.892950415611267,
+                  -0.2099197506904602,
+                  -0.2099197506904602,
+                  -0.17031221091747284,
+                  -0.17031221091747284,
+                  -0.9323461651802063,
+                  -0.9323461651802063,
+                  -0.18916749954223633,
+                  -0.5634616613388062,
+                  -0.5634616613388062,
+                  -0.4294109642505646,
+                  -1.9698299169540405,
+                  -0.33025360107421875,
+                  -0.33025360107421875,
+                  -0.4052111804485321,
+                  -0.9814534783363342,
+                  -1.235232949256897,
+                  -1.6809989213943481,
+                  -3.271195650100708,
+                  -2.847500801086426,
+                  -0.5509157180786133,
+                  -0.5509157180786133,
+                  -0.12817585468292236,
+                  -0.12817585468292236,
+                  -0.340070903301239,
+                  -0.340070903301239,
+                  -0.09200314432382584,
+                  -0.09200314432382584,
+                  -0.39731842279434204,
+                  -0.39731842279434204,
+                  -0.39731842279434204,
+                  -0.0018502618186175823,
+                  -0.0018502618186175823,
+                  -0.1837342232465744,
+                  -0.1837342232465744,
+                  -0.1837342232465744,
+                  -0.5685393810272217,
+                  -0.5685393810272217,
+                  -0.2552303969860077,
+                  1.084123753118781
+                ],
+                [
+                  -0.45763665437698364,
+                  -0.4502273499965668,
+                  -0.6388120055198669,
+                  -0.1639048308134079,
+                  -0.14719735085964203,
+                  -0.13071492314338684,
+                  -0.11528506875038147,
+                  -0.4457385838031769,
+                  -0.3051641583442688,
+                  -0.11606897413730621,
+                  -0.11606897413730621,
+                  -0.11606897413730621,
+                  -0.8181796669960022,
+                  -1.2257564067840576,
+                  1.5663427114486694,
+                  -0.7280534505844116,
+                  -1.4078336954116821,
+                  -0.009340235963463783,
+                  -0.020270032808184624,
+                  -0.006259678862988949,
+                  -2.5103108882904053,
+                  2.7096121311187744,
+                  -0.3301491439342499,
+                  -2.0743939876556396,
+                  -0.009272914379835129,
+                  -0.4941970407962799,
+                  -0.04667212441563606,
+                  -2.506740093231201,
+                  -0.8850616216659546,
+                  -1.1101988554000854,
+                  -0.16208553314208984,
+                  -0.16208553314208984,
+                  -0.16208553314208984,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  -0.7233769297599792,
+                  -0.2716090679168701,
+                  -0.044031959027051926,
+                  -0.6647776961326599,
+                  -0.6647776961326599,
+                  0,
+                  0,
+                  -0.21605508029460907,
+                  -0.21605508029460907,
+                  1.1863716840744019,
+                  8.800690650939941,
+                  3.8932764530181885,
+                  2.2590415477752686,
+                  0.6230783462524414,
+                  0.6230783462524414,
+                  0.624625027179718,
+                  0.624625027179718,
+                  6.154425144195557,
+                  6.154425144195557,
+                  -0.3674233555793762,
+                  -0.6079080700874329,
+                  -0.6079080700874329,
+                  -0.17002849280834198,
+                  -0.6433008909225464,
+                  -0.15784551203250885,
+                  -0.15784551203250885,
+                  -0.13888685405254364,
+                  -0.18877777457237244,
+                  -0.1459427922964096,
+                  -0.6757542490959167,
+                  -0.08509504050016403,
+                  -0.030539797618985176,
+                  -0.051972247660160065,
+                  -0.051972247660160065,
+                  -0.10090839862823486,
+                  -0.10090839862823486,
+                  -0.16050757467746735,
+                  -0.16050757467746735,
+                  -0.08280498534440994,
+                  -0.08280498534440994,
+                  -0.2826040983200073,
+                  -0.2826040983200073,
+                  -0.2826040983200073,
+                  -0.77150958776474,
+                  -0.77150958776474,
+                  -0.15758873522281647,
+                  -0.15758873522281647,
+                  -0.15758873522281647,
+                  -0.32654717564582825,
+                  -0.32654717564582825,
+                  -0.17617350816726685,
+                  0.3682995897529064
+                ],
+                [
+                  -0.4064958393573761,
+                  -0.4042462110519409,
+                  -0.730158805847168,
+                  -0.18949352204799652,
+                  -0.17011424899101257,
+                  -0.1510661393404007,
+                  -0.1332644522190094,
+                  -0.5015523433685303,
+                  -0.35200777649879456,
+                  -0.2227027863264084,
+                  -0.11267639696598053,
+                  -0.11267639696598053,
+                  -0.05999472364783287,
+                  -0.5689724683761597,
+                  -0.9862785935401917,
+                  -0.8959547877311707,
+                  1.1580936908721924,
+                  -0.5730432271957397,
+                  -1.1612168550491333,
+                  -0.5025599598884583,
+                  -1.0848195552825928,
+                  -1.0344395637512207,
+                  0.6832971572875977,
+                  -0.03852006793022156,
+                  -0.03852006793022156,
+                  -0.3352068066596985,
+                  0,
+                  -0.6115118861198425,
+                  -1.1461344957351685,
+                  -1.2710564136505127,
+                  -0.7800498604774475,
+                  -0.08430374413728714,
+                  -0.08430374413728714,
+                  -0.7254797220230103,
+                  -0.7254797220230103,
+                  -0.717750072479248,
+                  -0.717750072479248,
+                  -0.6755573749542236,
+                  -0.6755573749542236,
+                  -0.8987231850624084,
+                  1.5255067348480225,
+                  -0.8987231850624084,
+                  0,
+                  0,
+                  0,
+                  -0.07500384747982025,
+                  -0.15000274777412415,
+                  -0.15000274777412415,
+                  1.1506508588790894,
+                  -0.7054983377456665,
+                  -0.7054983377456665,
+                  -0.44502925872802734,
+                  -0.015964653342962265,
+                  -0.015964653342962265,
+                  -0.008609678596258163,
+                  -0.008609678596258163,
+                  0,
+                  0,
+                  2.923166275024414,
+                  4.968365669250488,
+                  4.968365669250488,
+                  3.504917621612549,
+                  9.38409423828125,
+                  2.044725179672241,
+                  2.044725179672241,
+                  3.453059196472168,
+                  2.426502227783203,
+                  -0.1712845116853714,
+                  -0.48943576216697693,
+                  -0.11094044893980026,
+                  -0.32257530093193054,
+                  -0.06639450788497925,
+                  -0.06639450788497925,
+                  -0.08882591873407364,
+                  -0.08882591873407364,
+                  -0.26070436835289,
+                  -0.26070436835289,
+                  -0.07044941186904907,
+                  -0.07044941186904907,
+                  -0.3000045120716095,
+                  -0.3000045120716095,
+                  -0.3000045120716095,
+                  -0.7207378149032593,
+                  -0.7207378149032593,
+                  -0.19274894893169403,
+                  -0.19274894893169403,
+                  -0.19274894893169403,
+                  -0.3284049928188324,
+                  -0.3284049928188324,
+                  -0.22375230491161346,
+                  0.2663353447202438
+                ],
+                [
+                  -0.07552605122327805,
+                  -0.07243429124355316,
+                  -0.27338874340057373,
+                  -0.0607389397919178,
+                  -0.05458888038992882,
+                  -0.04830044507980347,
+                  -0.04233071953058243,
+                  -0.17360228300094604,
+                  -0.12069486081600189,
+                  -2.3888933658599854,
+                  -0.027007360011339188,
+                  -0.027007360011339188,
+                  -0.02440953627228737,
+                  -0.220711812376976,
+                  -0.2647843658924103,
+                  -0.18716666102409363,
+                  1.8683253526687622,
+                  -0.09823235124349594,
+                  -0.23142993450164795,
+                  -0.09120506793260574,
+                  -7.170141696929932,
+                  -0.38227516412734985,
+                  -0.11375164985656738,
+                  -0.02758236788213253,
+                  -0.014747991226613522,
+                  -1.2746773958206177,
+                  0,
+                  -1.2105379104614258,
+                  5.125000953674316,
+                  4.446426868438721,
+                  -0.03739360719919205,
+                  -0.006056888494640589,
+                  -0.006056888494640589,
+                  -0.04639919847249985,
+                  -0.04639919847249985,
+                  -0.04035160690546036,
+                  -0.04035160690546036,
+                  -0.026794053614139557,
+                  -0.026794053614139557,
+                  -0.003133239457383752,
+                  -0.003133239457383752,
+                  -0.003133239457383752,
+                  0,
+                  0,
+                  -7.021242141723633,
+                  -2.33487868309021,
+                  0,
+                  0,
+                  3.4921019077301025,
+                  -0.7984655499458313,
+                  -0.5214806795120239,
+                  3.405531406402588,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  -0.43196287751197815,
+                  -0.43196287751197815,
+                  -0.43196287751197815,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  3.5124130249023438,
+                  3.4871678352355957,
+                  6.620242118835449,
+                  4.95385217666626,
+                  1.6873739957809448,
+                  1.6873739957809448,
+                  -1.4720687866210938,
+                  -1.4720687866210938,
+                  -0.09601868689060211,
+                  -0.09601868689060211,
+                  -1.4551782608032227,
+                  -1.4551782608032227,
+                  -0.09079763293266296,
+                  -0.09079763293266296,
+                  -0.09079763293266296,
+                  -0.7446470856666565,
+                  -0.7446470856666565,
+                  -0.07348359376192093,
+                  -0.07348359376192093,
+                  -0.07348359376192093,
+                  -0.07969135791063309,
+                  -0.07969135791063309,
+                  -0.06701089441776276,
+                  -2.173764020530742
+                ],
+                [
+                  -1.7383493185043335,
+                  -1.7211132049560547,
+                  -1.5001726150512695,
+                  -0.3832671344280243,
+                  -0.37470924854278564,
+                  -0.3677080571651459,
+                  -0.36137455701828003,
+                  -1.0709140300750732,
+                  -0.7953765988349915,
+                  -0.2682717442512512,
+                  -0.2682717442512512,
+                  -0.2682717442512512,
+                  -0.08539845794439316,
+                  -1.2116137742996216,
+                  -4.553590297698975,
+                  -0.1739068180322647,
+                  -1.3820141553878784,
+                  -0.21338260173797607,
+                  -0.4293678402900696,
+                  -0.19042502343654633,
+                  -4.8715620040893555,
+                  -1.7380828857421875,
+                  -0.3766593039035797,
+                  -0.1961931586265564,
+                  -0.12496350705623627,
+                  7.965041160583496,
+                  -2.049391984939575,
+                  9.507661819458008,
+                  -8.53118896484375,
+                  1.8300729990005493,
+                  -0.6313696503639221,
+                  -0.604004979133606,
+                  -0.604004979133606,
+                  -0.23307476937770844,
+                  -0.23307476937770844,
+                  -0.23204636573791504,
+                  -0.23204636573791504,
+                  -0.01823686622083187,
+                  -0.01823686622083187,
+                  -0.5401551127433777,
+                  -0.7880871295928955,
+                  -0.511940598487854,
+                  -0.01883363164961338,
+                  -0.01883363164961338,
+                  -0.8023103475570679,
+                  0,
+                  -0.9082891941070557,
+                  -0.9082891941070557,
+                  -1.0066535472869873,
+                  -1.8246172666549683,
+                  -0.2272782325744629,
+                  1.8890870809555054,
+                  -0.09245536476373672,
+                  -0.09245536476373672,
+                  -0.06871198862791061,
+                  -0.06871198862791061,
+                  0,
+                  0,
+                  -0.03169132396578789,
+                  -0.4770635664463043,
+                  -0.4770635664463043,
+                  -0.06373326480388641,
+                  -0.39627495408058167,
+                  -0.4385228753089905,
+                  -0.4385228753089905,
+                  -0.056422922760248184,
+                  -0.2747786343097687,
+                  -0.3343690037727356,
+                  3.652454376220703,
+                  -0.3300827145576477,
+                  -0.03835403546690941,
+                  -0.031898342072963715,
+                  -0.031898342072963715,
+                  5.192983150482178,
+                  5.192983150482178,
+                  1.6349358558654785,
+                  1.6349358558654785,
+                  5.203136920928955,
+                  5.203136920928955,
+                  -0.6380416750907898,
+                  -0.6380416750907898,
+                  -0.6380416750907898,
+                  -0.46019142866134644,
+                  -0.46019142866134644,
+                  -0.3549327552318573,
+                  -0.3549327552318573,
+                  -0.3549327552318573,
+                  -0.9409406781196594,
+                  -0.9409406781196594,
+                  -0.6694149971008301,
+                  1.891318776532063
+                ],
+                [
+                  -1.7782009840011597,
+                  -1.7648276090621948,
+                  -1.76240074634552,
+                  -0.4605458676815033,
+                  -0.4396655559539795,
+                  -0.39425548911094666,
+                  -0.3519229590892792,
+                  -1.2375065088272095,
+                  -0.8788537383079529,
+                  -0.33609822392463684,
+                  -0.3206128180027008,
+                  -0.3206128180027008,
+                  -3.4135472774505615,
+                  5.589890480041504,
+                  -3.916879892349243,
+                  -0.1615694910287857,
+                  -1.4607172012329102,
+                  -0.2469298541545868,
+                  -0.48590269684791565,
+                  -0.20898883044719696,
+                  -0.895214855670929,
+                  -0.3550136089324951,
+                  -0.4357287287712097,
+                  -0.5568860769271851,
+                  -0.4713646471500397,
+                  -0.9364916086196899,
+                  -0.030425364151597023,
+                  -1.0513150691986084,
+                  -1.3328603506088257,
+                  -1.573697805404663,
+                  -0.6762462854385376,
+                  -0.6171315312385559,
+                  -0.6171315312385559,
+                  -0.24428431689739227,
+                  -0.24428431689739227,
+                  -0.2291271686553955,
+                  -0.2291271686553955,
+                  -0.04735108092427254,
+                  -0.04735108092427254,
+                  -0.5877419710159302,
+                  -0.7959669828414917,
+                  -0.5231174230575562,
+                  -0.049201738089323044,
+                  -0.049201738089323044,
+                  -0.1203581914305687,
+                  -0.0070056919939816,
+                  -0.9133059978485107,
+                  -0.9133059978485107,
+                  1.7237870693206787,
+                  -1.8558961153030396,
+                  -1.6869534254074097,
+                  -0.767810583114624,
+                  -0.08063225448131561,
+                  -0.08063225448131561,
+                  -0.05760297179222107,
+                  -0.05760297179222107,
+                  -0.031236043199896812,
+                  -0.031236043199896812,
+                  -1.1007336378097534,
+                  -1.2298872470855713,
+                  -1.2298872470855713,
+                  -0.04362286254763603,
+                  -0.3455011248588562,
+                  -0.10899629443883896,
+                  -0.10899629443883896,
+                  -0.03000439703464508,
+                  -0.2597579061985016,
+                  -0.6467649340629578,
+                  -0.8826659917831421,
+                  -0.003385219257324934,
+                  0,
+                  -0.3621842563152313,
+                  -0.3621842563152313,
+                  -0.12857191264629364,
+                  -0.12857191264629364,
+                  -0.4162019193172455,
+                  -0.4162019193172455,
+                  -0.12417597323656082,
+                  -0.12417597323656082,
+                  4.154828071594238,
+                  4.154828071594238,
+                  4.154828071594238,
+                  5.370418548583984,
+                  5.370418548583984,
+                  2.3039379119873047,
+                  2.3039379119873047,
+                  2.3039379119873047,
+                  6.230695724487305,
+                  6.230695724487305,
+                  6.700411319732666,
+                  1.826335142687242
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "id",
+        "halo"
+      ],
+      [
+        "id",
+        "hai"
+      ],
+      [
+        "id",
+        "selamat pagi"
+      ],
+      [
+        "id",
+        "selamat siang"
+      ],
+      [
+        "id",
+        "selamat sore"
+      ],
+      [
+        "id",
+        "selamat malam"
+      ],
+      [
+        "id",
+        "siapa kamu?"
+      ],
+      [
+        "id",
+        "kamu siapa?"
+      ],
+      [
+        "id",
+        "dengan siapa saya berbicara?"
+      ],
+      [
+        "id",
+        "ini layanan apa?"
+      ],
+      [
+        "id",
+        "apa itu Cbank?"
+      ],
+      [
+        "id",
+        "ceritakan tentang Cbank"
+      ],
+      [
+        "id",
+        "informasi tentang Cbank"
+      ],
+      [
+        "id",
+        "Cbank itu apa?"
+      ],
+      [
+        "id",
+        "bunga tabungan di Cbank?"
+      ],
+      [
+        "id",
+        "berapa suku bunga tabungan?"
+      ],
+      [
+        "id",
+        "suku bunga deposito?"
+      ],
+      [
+        "id",
+        "bunga KPR berapa?"
+      ],
+      [
+        "id",
+        "berapa persen bunga pinjaman?"
+      ],
+      [
+        "id",
+        "bunga kartu kredit?"
+      ],
+      [
+        "id",
+        "dimana cabang terdekat?"
+      ],
+      [
+        "id",
+        "lokasi ATM Cbank?"
+      ],
+      [
+        "id",
+        "alamat kantor Cbank?"
+      ],
+      [
+        "id",
+        "Cbank di kota mana saja?"
+      ],
+      [
+        "id",
+        "cashback transaksi internasional?"
+      ],
+      [
+        "id",
+        "apakah ada program cashback?"
+      ],
+      [
+        "id",
+        "promo kartu kredit?"
+      ],
+      [
+        "id",
+        "diskon dengan kartu Cbank?"
+      ],
+      [
+        "id",
+        "reward point?"
+      ],
+      [
+        "id",
+        "cara buka rekening"
+      ],
+      [
+        "id",
+        "syarat buka tabungan"
+      ],
+      [
+        "id",
+        "dokumen untuk membuka rekening"
+      ],
+      [
+        "id",
+        "bisakah membuka rekening online?"
+      ],
+      [
+        "id",
+        "berapa setoran awal?"
+      ],
+      [
+        "id",
+        "cara daftar mobile banking"
+      ],
+      [
+        "id",
+        "aktivasi aplikasi Cbank"
+      ],
+      [
+        "id",
+        "lupa password mobile banking"
+      ],
+      [
+        "id",
+        "fitur aplikasi Cbank"
+      ],
+      [
+        "id",
+        "biaya transaksi di aplikasi"
+      ],
+      [
+        "id",
+        "cara apply kartu kredit"
+      ],
+      [
+        "id",
+        "syarat pengajuan kartu kredit"
+      ],
+      [
+        "id",
+        "limit kartu kredit"
+      ],
+      [
+        "id",
+        "jenis kartu kredit Cbank"
+      ],
+      [
+        "id",
+        "cara bayar tagihan kartu kredit"
+      ],
+      [
+        "id",
+        "pengajuan KPR"
+      ],
+      [
+        "id",
+        "syarat pinjaman"
+      ],
+      [
+        "id",
+        "kredit tanpa agunan"
+      ],
+      [
+        "id",
+        "pinjaman modal usaha"
+      ],
+      [
+        "id",
+        "jangka waktu kredit"
+      ],
+      [
+        "id",
+        "nomor customer service"
+      ],
+      [
+        "id",
+        "cara menghubungi CS"
+      ],
+      [
+        "id",
+        "jam layanan call center"
+      ],
+      [
+        "id",
+        "email pengaduan"
+      ],
+      [
+        "id",
+        "komplain layanan"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {
+      "id": {
+        "product": {
+          "name": "product",
+          "type": "enum",
+          "rules": [
+            {
+              "option": "tabungan",
+              "texts": [
+                "tabungan",
+                "rekening",
+                "simpanan"
+              ]
+            },
+            {
+              "option": "kredit",
+              "texts": [
+                "kredit",
+                "pinjaman",
+                "kpr",
+                "kta"
+              ]
+            },
+            {
+              "option": "kartu",
+              "texts": [
+                "kartu kredit",
+                "kartu debit",
+                "cc",
+                "atm"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "id": {
+        "greeting": [
+          {
+            "answer": "Halo! Selamat datang di Cbank. Apa yang bisa saya bantu hari ini?"
+          }
+        ],
+        "identity": [
+          {
+            "answer": "Saya adalah asisten virtual Cbank yang siap membantu Anda dengan informasi seputar layanan perbankan kami. Silakan tanyakan apa yang ingin Anda ketahui."
+          }
+        ],
+        "about_cbank": [
+          {
+            "answer": "Cbank adalah institusi keuangan terkemuka yang menyediakan berbagai layanan perbankan seperti tabungan, deposito, kredit, kartu kredit, dan investasi. Kami telah melayani jutaan nasabah di Indonesia dengan komitmen untuk memberikan solusi keuangan terbaik dan inovatif."
+          }
+        ],
+        "interest_rate": [
+          {
+            "answer": "Suku bunga di Cbank bervariasi tergantung produk:\n\n• Tabungan reguler: 2.5% per tahun\n• Deposito: 3.5% - 5.5% tergantung tenor\n• KPR: mulai dari 7.5% per tahun\n• KTA: mulai dari 9.5% per tahun\n• Kartu Kredit: 2.25% per bulan\n\nSilakan kunjungi website resmi kami atau hubungi customer service untuk informasi terbaru dan penawaran khusus."
+          }
+        ],
+        "nearest_branch": [
+          {
+            "answer": "Cbank memiliki lebih dari 500 cabang dan 1,200 ATM di seluruh Indonesia. Untuk menemukan lokasi cabang atau ATM terdekat, Anda dapat:\n\n1. Menggunakan fitur 'Lokasi' di aplikasi mobile Cbank\n2. Mengunjungi website kami di bagian 'Jaringan Cabang'\n3. Menghubungi call center kami di 1500-123\n\nMohon beri tahu kota atau area Anda untuk informasi lebih spesifik."
+          }
+        ],
+        "cashback": [
+          {
+            "answer": "Cbank memiliki berbagai program cashback dan promo menarik:\n\n• Cashback 5% untuk transaksi di merchant F&B dengan kartu kredit\n• Cashback hingga 10% untuk transaksi e-commerce\n• Diskon hingga 20% di merchant partner\n• Program point reward yang dapat ditukarkan dengan hadiah menarik\n\nPromo berlaku untuk periode tertentu. Silakan cek website atau aplikasi Cbank untuk informasi promo terbaru."
+          }
+        ],
+        "open_account": [
+          {
+            "answer": "Untuk membuka rekening di Cbank, Anda memerlukan:\n\n• KTP (wajib)\n• NPWP (jika ada)\n• Setoran awal minimal Rp 250.000\n\nAnda dapat membuka rekening melalui:\n1. Kunjungan ke cabang terdekat\n2. Aplikasi Cbank secara online (eKYC)\n3. Website resmi kami\n\nProses pembukaan rekening online hanya membutuhkan waktu sekitar 10 menit dan kartu akan dikirimkan ke alamat Anda."
+          }
+        ],
+        "mobile_banking": [
+          {
+            "answer": "Aplikasi Mobile Banking Cbank menawarkan berbagai fitur:\n\n• Transfer dana real-time\n• Pembayaran tagihan\n• Top-up e-wallet\n• Pembelian pulsa dan paket data\n• Pembukaan deposito\n• Pengajuan kredit\n• Informasi saldo dan mutasi rekening\n\nUntuk mendaftar, download aplikasi Cbank di App Store atau Play Store, lalu ikuti petunjuk pendaftaran dengan menyiapkan kartu ATM dan nomor rekening Anda."
+          }
+        ],
+        "credit_card": [
+          {
+            "answer": "Kartu Kredit Cbank tersedia dalam beberapa varian:\n\n• Cbank Classic: Limit mulai 5 juta\n• Cbank Gold: Limit mulai 10 juta\n• Cbank Platinum: Limit mulai 25 juta\n• Cbank Signature: Limit mulai 50 juta\n\nSyarat pengajuan:\n- WNI berusia 21-65 tahun\n- Penghasilan minimum 3 juta per bulan\n- Fotokopi KTP dan slip gaji\n\nAnda dapat mengajukan melalui aplikasi, website, atau kunjungan ke cabang."
+          }
+        ],
+        "loans": [
+          {
+            "answer": "Cbank menawarkan berbagai produk pinjaman:\n\n• KPR: Bunga mulai 7.5%, tenor hingga 20 tahun\n• KTA: Bunga mulai 9.5%, plafon hingga 300 juta\n• Kredit Usaha: Bunga kompetitif dengan tenor fleksibel\n• Kredit Pendidikan: Khusus untuk biaya pendidikan\n\nPersyaratan umum:\n- KTP dan KK\n- Slip gaji atau bukti penghasilan\n- Rekening koran 3 bulan terakhir\n\nProses persetujuan KTA secepat 3 hari kerja."
+          }
+        ],
+        "customer_service": [
+          {
+            "answer": "Anda dapat menghubungi Customer Service Cbank melalui:\n\n• Call Center: 1500-123 (24/7)\n• Email: cs@cbank.co.id\n• WhatsApp: 082117763760\n• Live Chat di website atau aplikasi\n• Media sosial: @CbankID\n\nJam layanan cabang: Senin-Jumat 08.00-15.00, Sabtu 08.00-12.00 (kecuali libur nasional)."
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

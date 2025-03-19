@@ -2,20 +2,12 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  FiUser,
-  FiMail,
-  FiPhone,
-  FiMapPin,
-  FiSave,
-  FiLoader,
-} from "react-icons/fi";
+import { FiUser, FiMail, FiSave, FiLoader } from "react-icons/fi";
 import DashboardHeader from "./DashboardHeader";
 import { DashboardSidebar } from "./DashboardSidebar";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { Button } from "../../components/ui/button";
-import { Textarea } from "../../components/ui/textarea";
 import { useToast } from "../../components/toast";
 import { userService } from "../../services/api";
 
@@ -26,9 +18,6 @@ export default function Profile() {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
-    phone: "",
-    address: "",
-    bio: "",
   });
 
   const { toast } = useToast();
@@ -52,9 +41,6 @@ export default function Profile() {
         setFormData({
           fullName: response.user.fullName || "",
           email: response.user.email || "",
-          phone: response.user.phone || "",
-          address: response.user.address || "",
-          bio: response.user.bio || "",
         });
       } catch (error) {
         console.error("Authentication error:", error);
@@ -72,9 +58,7 @@ export default function Profile() {
     fetchUserData();
   }, [navigate, toast]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -132,134 +116,86 @@ export default function Profile() {
               <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
                 Profile
               </h1>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600 dark:text-gray-300">
                 Manage your personal information and account details
               </p>
             </div>
 
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
               <div className="p-6">
-                <div className="flex flex-col md:flex-row gap-8">
-                  {/* Profile Picture Section */}
-                  <div className="flex flex-col items-center space-y-4">
-                    <div className="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white text-4xl font-bold">
-                      {user.fullName?.charAt(0) || "U"}
-                    </div>
-                    <Button variant="outline" size="sm">
-                      Change Photo
-                    </Button>
-                  </div>
-
-                  {/* Profile Form */}
-                  <div className="flex-1">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="space-y-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="fullName">Full Name</Label>
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                              <FiUser className="text-gray-400" />
-                            </div>
-                            <Input
-                              id="fullName"
-                              name="fullName"
-                              placeholder="John Doe"
-                              className="pl-10"
-                              value={formData.fullName}
-                              onChange={handleChange}
-                            />
+                {/* Profile Form */}
+                <div className="max-w-md mx-auto">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="fullName"
+                          className="text-gray-700 dark:text-gray-300"
+                        >
+                          Full Name
+                        </Label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <FiUser className="text-gray-400" />
                           </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor="email">Email</Label>
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                              <FiMail className="text-gray-400" />
-                            </div>
-                            <Input
-                              id="email"
-                              name="email"
-                              type="email"
-                              placeholder="name@example.com"
-                              className="pl-10"
-                              value={formData.email}
-                              onChange={handleChange}
-                              disabled
-                            />
-                          </div>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">
-                            Email cannot be changed. Contact support for
-                            assistance.
-                          </p>
-                        </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor="phone">Phone Number</Label>
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                              <FiPhone className="text-gray-400" />
-                            </div>
-                            <Input
-                              id="phone"
-                              name="phone"
-                              placeholder="+1 (555) 123-4567"
-                              className="pl-10"
-                              value={formData.phone}
-                              onChange={handleChange}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor="address">Address</Label>
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                              <FiMapPin className="text-gray-400" />
-                            </div>
-                            <Input
-                              id="address"
-                              name="address"
-                              placeholder="123 Main St, City, Country"
-                              className="pl-10"
-                              value={formData.address}
-                              onChange={handleChange}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="space-y-2">
-                          <Label htmlFor="bio">Bio</Label>
-                          <Textarea
-                            id="bio"
-                            name="bio"
-                            placeholder="Tell us a little about yourself"
-                            className="min-h-[100px]"
-                            value={formData.bio}
+                          <Input
+                            id="fullName"
+                            name="fullName"
+                            placeholder="John Doe"
+                            className="pl-10 dark:text-gray-300"
+                            value={formData.fullName}
                             onChange={handleChange}
                           />
                         </div>
                       </div>
 
-                      <Button
-                        type="submit"
-                        className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-medium py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
-                        disabled={isSaving}
-                      >
-                        {isSaving ? (
-                          <div className="flex items-center justify-center">
-                            <FiLoader className="animate-spin mr-2" />
-                            Saving...
+                      <div className="space-y-2">
+                        <Label
+                          htmlFor="email"
+                          className="text-gray-700 dark:text-gray-300"
+                        >
+                          Email
+                        </Label>
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <FiMail className="text-gray-400" />
                           </div>
-                        ) : (
-                          <div className="flex items-center justify-center">
-                            <FiSave className="mr-2" />
-                            Save Changes
-                          </div>
-                        )}
-                      </Button>
-                    </form>
-                  </div>
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="name@example.com"
+                            className="pl-10 dark:text-gray-300"
+                            value={formData.email}
+                            onChange={handleChange}
+                            disabled
+                          />
+                        </div>
+                        <p className="text-xs text-gray-500 dark:text-gray-300">
+                          Email cannot be changed. Contact support for
+                          assistance.
+                        </p>
+                      </div>
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-medium py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30"
+                      disabled={isSaving}
+                    >
+                      {isSaving ? (
+                        <div className="flex items-center justify-center">
+                          <FiLoader className="animate-spin mr-2" />
+                          Saving...
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center">
+                          <FiSave className="mr-2" />
+                          Save Changes
+                        </div>
+                      )}
+                    </Button>
+                  </form>
                 </div>
               </div>
             </div>
